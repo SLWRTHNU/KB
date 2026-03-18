@@ -1,0 +1,119 @@
+<section class="hero {{#if settings.show_community_bg_image}}community-hero {{else}} community-hero-bg-color{{/if}}">
+  <div class="hero-inner">
+    {{#isnt settings.welcome_message_title 'HIDE_ME'}}
+      <h1 class="welcome-message">
+        {{#is settings.welcome_message_title_dc 'NONE'}}{{settings.welcome_message_title}}{{else}}{{dc settings.welcome_message_title_dc}}{{/is}}
+      </h1>
+    {{/isnt}}
+     {{search instant=true class='search search-full'}}
+    {{#isnt settings.search_placeholder_text 'NONE'}}
+    <span id="search_placeholder_text" data-value="{{#is settings.search_placeholder_text_dc 'NONE'}}{{settings.search_placeholder_text}}{{else}}{{dc settings.search_placeholder_text_dc}}{{/is}}">
+    </span>
+    <script>
+    //dynamic placeholder in searchbar
+  var gtext = $("span#search_placeholder_text").data('value');
+  $('#query').attr('placeholder', gtext);
+    </script>
+     {{/isnt}}
+  </div>
+</section>
+
+<section class="sub-nav-wrapper">
+  <div class="container">
+    <nav class="sub-nav">
+      {{breadcrumbs}}
+    </nav>
+  </div>
+</section>
+
+<div class="container">
+
+  <header class="page-header cpage-head">
+    <h1 class="ctopic-head">
+      {{topic.name}} {{#if topic.internal}}
+      <span class="icon-lock" title="{{t 'internal'}}"></span>
+      {{/if}}
+    </h1>
+    <span class="post-to-community page-header-item">
+      {{link 'new_post' role='button' topic_id=topic.id class='button button-large'}}
+    </span>
+  </header>
+  <div class="community-header">
+    <p class="page-header-description">{{topic.description}}</p>
+    <div class="community-follow">
+      {{subscribe}}
+    </div>
+  </div>
+
+  <div class="topic-header">
+    <span class="topic-filters">
+      <span class="dropdown">
+        <span class="dropdown-toggle">
+          {{current_filter.label}}
+        </span>
+        <span class="dropdown-menu" role="menu">
+          {{#each filters}}
+          <a href="{{url}}" aria-selected="{{selected}}" role="menuitem" title="{{name}}">
+            {{name}}
+          </a>
+          {{/each}}
+        </span>
+      </span>
+      <span class="dropdown">
+        <span class="dropdown-toggle">
+          {{current_sorter.label}}
+        </span>
+        <span class="dropdown-menu" role="menu">
+          {{#each sorters}}
+          <a href="{{url}}" aria-selected="{{selected}}" role="menuitem" title="{{name}}">
+            {{name}}
+          </a>
+          {{/each}}
+        </span>
+      </span>
+    </span>
+  </div>
+
+  <ul class="posts-list striped-list">
+    {{#each posts}}
+    <li>
+      <div class="striped-list-item {{#if featured}}post-featured{{/if}}">
+        <span class="striped-list-info">
+          <a href="{{url}}" title="{{title}}" class="striped-list-title">{{title}}</a>
+          <span class="post-overview-item">
+            {{#if pinned}}
+            <span class="status-label status-label-pinned">{{t 'pinned'}}</span>
+            {{/if}} {{#if featured}}
+            <span class="status-label status-label-featured">{{t 'featured'}}</span>
+            {{/if}} {{#is status 'none'}} {{else}}
+            <span class="status-label-{{status_dasherized}} status-label striped-list-status">{{status_name}}</span>
+            {{/is}}
+          </span>
+
+          <ul class="meta-group">
+            <li class="meta-data">{{author.name}}</li>
+            {{#if editor}}
+            <li class="meta-data">{{date edited_at timeago=true}}</li>
+            <li class="meta-data">{{t 'edited'}}</li>
+            {{else}}
+            <li class="meta-data">{{date created_at timeago=true}}</li>
+            {{/if}}
+          </ul>
+        </span>
+
+        <div class="post-overview-count striped-list-count">
+          <span class="striped-list-count-item">
+            <span class="striped-list-number">{{vote_sum}}</span>
+            {{t 'vote' count=vote_sum}}
+          </span>
+          <span class="striped-list-count-item">
+            <span class="striped-list-number">{{comment_count}}</span>
+            {{t 'comment' count=comment_count}}
+          </span>
+        </div>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+  {{pagination}}
+</div>

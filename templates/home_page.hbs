@@ -1,0 +1,249 @@
+<script>var _templateName="homepage";</script>
+
+<section class="vs-hero" role="region" aria-label="Help center hero">
+  <div class="vs-hero-inner">
+      <p class="vs-hero-title">
+        Vanillasoft Help Center
+      </p>
+
+<p class="vs-omnisearch-subtext">Search Vanillasoft guides and FAQs</p>
+<div class="vs-omnisearch" data-enhanced="true">
+  <div class="vs-omnisearch-shell">
+       <svg class="vs-omnisearch-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79L20 20.5 20.5 20l-5-6zM10 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+    </svg>
+          <form class="vs-omnisearch-form" role="search" data-search="" data-instant="true" autocomplete="off" action="/hc/en-us/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓" autocomplete="off"><input type="search" name="query" id="query" placeholder="Search" autocomplete="off" aria-label="Search">
+<input type="submit" name="commit" value="Search"></form>       
+            
+    
+        </div>
+
+<div class="vs-omnisearch-action">
+  </div>
+      </div>
+    </div>
+
+  <div class="vs-hero-shape vs-hero-shape-a" aria-hidden="true"></div>
+  <div class="vs-hero-shape vs-hero-shape-b" aria-hidden="true"></div>
+</section>
+
+<script>
+  // “/” focuses the search
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+      const q = document.getElementById('query'); if (q) { e.preventDefault(); q.focus(); q.select(); }
+    }
+  });
+
+  // Wire the external button to submit the proxy form with the live query value
+  (function () {
+    const q = document.getElementById('query');
+    const proxy = document.getElementById('vs-omni-proxy');
+    const btn = document.querySelector('.vs-omnisearch-submit');
+    const proxyForm = document.getElementById('vs-omni-form-fix');
+    if (!q || !proxy || !btn || !proxyForm) return;
+    btn.addEventListener('click', function () {
+      proxy.value = q.value || '';
+      proxyForm.submit();
+    });
+  })();
+
+  (function () {
+  var form  = document.querySelector('.vs-omnisearch-shell form.search');
+  var btn   = document.getElementById('vs-search-submit');
+  if (form && btn) btn.addEventListener('click', function(){ form.submit(); });
+})();
+  
+  document.addEventListener("DOMContentLoaded", function () {
+  const shells = document.querySelectorAll(".vs-omnisearch-shell");
+  shells.forEach(shell => {
+    const input = shell.querySelector("input[type='search']");
+    const btn = shell.querySelector(".vs-omnisearch-submit");
+
+    if (input) {
+      input.addEventListener("mouseenter", () => shell.classList.add("hover-input"));
+      input.addEventListener("mouseleave", () => shell.classList.remove("hover-input"));
+    }
+
+    if (btn) {
+      btn.addEventListener("mouseenter", () => shell.classList.remove("hover-input"));
+      btn.addEventListener("mouseleave", () => shell.classList.remove("hover-input"));
+    }
+  });
+});
+</script>
+
+<hr style="height:1px;visibility:hidden">
+
+
+<section class="vs-features" aria-label="Browse help topics">
+  <div class="container">
+
+    <ul class="feature-list" role="list">
+      {{#if settings.custom_block_visibility}}
+        {{#isnt settings.first_block_title 'HIDE_ME'}}
+          <li class="feature">
+            <a href="https://support.vanillasoft.com/hc/en-us/categories/360004224691" class="feature-link">
+              <div class="feature-icon">
+                {{#is settings.first_block_font_icon 'NONE'}}
+                  <img src="{{settings.first_block_icon}}" alt="" class="block-icon">
+                  <img src="{{settings.first_block_hover_icon}}" alt="" class="block-hover-icon">
+                {{else}} <i class="{{settings.first_block_font_icon}}"></i> {{/is}}
+              </div>
+              <div class="feature-content">
+                <h3 class="feature-title">
+                  {{#is settings.first_block_title_dc 'NONE'}}{{settings.first_block_title}}{{else}}{{dc settings.first_block_title_dc}}{{/is}}
+                </h3>
+                {{#isnt settings.first_block_description 'NONE'}}
+                  <p class="feature-desc">
+                    {{#is settings.first_block_description_dc 'NONE'}}{{settings.first_block_description}}{{else}}{{dc settings.first_block_description_dc}}{{/is}}
+                  </p>
+                {{/isnt}}
+              </div>
+              <span class="feature-arrow" aria-hidden="true">›</span>
+            </a>
+          </li>
+        {{/isnt}}
+
+        {{#isnt settings.second_block_title 'HIDE_ME'}}
+          <li class="feature">
+            <a href="https://support.vanillasoft.com/hc/en-us/categories/360002219291" class="feature-link">
+              <div class="feature-icon">
+                {{#is settings.second_block_font_icon 'NONE'}}
+                  <img src="{{settings.second_block_icon}}" alt="" class="block-icon">
+                  <img src="{{settings.second_block_hover_icon}}" alt="" class="block-hover-icon">
+                {{else}} <i class="{{settings.second_block_font_icon}}"></i> {{/is}}
+              </div>
+              <div class="feature-content">
+                <h3 class="feature-title">
+                  {{#is settings.second_block_title_dc 'NONE'}}{{settings.second_block_title}}{{else}}{{dc settings.second_block_title_dc}}{{/is}}
+                </h3>
+                {{#isnt settings.second_block_description 'NONE'}}
+                  <p class="feature-desc">
+                    {{#is settings.second_block_description_dc 'NONE'}}{{settings.second_block_description}}{{else}}{{dc settings.second_block_description_dc}}{{/is}}
+                  </p>
+                {{/isnt}}
+              </div>
+              <span class="feature-arrow" aria-hidden="true">›</span>
+            </a>
+          </li>
+        {{/isnt}}
+
+        {{#isnt settings.third_block_title 'NONE'}}
+          <li class="feature">
+            <a href="https://support.vanillasoft.com/hc/en-us/categories/360002211592" class="feature-link">
+              <div class="feature-icon">
+                {{#is settings.third_block_font_icon 'NONE'}}
+                  <img src="{{settings.third_block_icon}}" alt="" class="block-icon">
+                  <img src="{{settings.third_block_hover_icon}}" alt="" class="block-hover-icon">
+                {{else}} <i class="{{settings.third_block_font_icon}}"></i> {{/is}}
+              </div>
+              <div class="feature-content">
+                <h3 class="feature-title">
+                  {{#is settings.third_block_title_dc 'NONE'}}{{settings.third_block_title}}{{else}}{{dc settings.third_block_title_dc}}{{/is}}
+                </h3>
+                {{#isnt settings.third_block_description 'NONE'}}
+                  <p class="feature-desc">
+                    {{#is settings.third_block_description_dc 'NONE'}}{{settings.third_block_description}}{{else}}{{dc settings.third_block_description_dc}}{{/is}}
+                  </p>
+                {{/isnt}}
+              </div>
+              <span class="feature-arrow" aria-hidden="true">›</span>
+            </a>
+          </li>
+        {{/isnt}}
+
+        {{#isnt settings.fourth_block_title 'HIDE_ME'}}
+          <li class="feature">
+            <a href="https://support.vanillasoft.com/hc/en-us/categories/360002219291" class="feature-link">
+              <div class="feature-icon">
+                {{#is settings.fourth_block_font_icon 'NONE'}}
+                  <img src="{{settings.fourth_block_icon}}" alt="" class="block-icon">
+                  <img src="{{settings.fourth_block_hover_icon}}" alt="" class="block-hover-icon">
+                {{else}} <i class="{{settings.fourth_block_font_icon}}"></i> {{/is}}
+              </div>
+              <div class="feature-content">
+                <h3 class="feature-title">
+                  {{#is settings.fourth_block_title_dc 'NONE'}}{{settings.fourth_block_title}}{{else}}{{dc settings.fourth_block_title_dc}}{{/is}}
+                </h3>
+                {{#isnt settings.fourth_block_description 'NONE'}}
+                  <p class="feature-desc">
+                    {{#is settings.fourth_block_description_dc 'NONE'}}{{settings.fourth_block_description}}{{else}}{{dc settings.fourth_block_description_dc}}{{/is}}
+                  </p>
+                {{/isnt}}
+              </div>
+              <span class="feature-arrow" aria-hidden="true">›</span>
+            </a>
+          </li>
+        {{/isnt}}
+
+        {{#isnt settings.fifth_block_title 'HIDE_ME'}}
+          <li class="feature">
+            <a href="https://support.vanillasoft.com/hc/en-us/requests" class="feature-link">
+              <div class="feature-icon">
+                {{#is settings.fifth_block_font_icon 'NONE'}}
+                  <img src="{{settings.fifth_block_icon}}" alt="" class="block-icon">
+                  <img src="{{settings.fifth_block_hover_icon}}" alt="" class="block-hover-icon">
+                {{else}} <i class="{{settings.fifth_block_font_icon}}"></i> {{/is}}
+              </div>
+              <div class="feature-content">
+                <h3 class="feature-title">
+                  {{#is settings.fifth_block_title_dc 'NONE'}}{{settings.fifth_block_title}}{{else}}{{dc settings.fifth_block_title_dc}}{{/is}}
+                </h3>
+                {{#isnt settings.fifth_block_description 'NONE'}}
+                  <p class="feature-desc">
+                    {{#is settings.fifth_block_description_dc 'NONE'}}{{settings.fifth_block_description}}{{else}}{{dc settings.fifth_block_description_dc}}{{/is}}
+                  </p>
+                {{/isnt}}
+              </div>
+              <span class="feature-arrow" aria-hidden="true">›</span>
+            </a>
+          </li>
+        {{/isnt}}
+      {{/if}}
+    </ul>
+
+    {{#if settings.category_block_visibility}}
+  
+      <ul class="feature-list" role="list">
+        {{#each categories}}
+          {{#if ../has_multiple_categories}}
+            <li class="feature">
+              <a href="{{url}}" class="feature-link">
+                <div class="feature-icon">
+                  <i class="{{id}}-block-font-icon hide"></i>
+                  <script>setIcon({{ id }});</script>
+                </div>
+                <div class="feature-content">
+                  <h3 class="feature-title">{{name}}</h3>
+                  <p class="feature-desc">{{excerpt description characters=120}}</p>
+                </div>
+                <span class="feature-arrow" aria-hidden="true">›</span>
+              </a>
+            </li>
+          {{else}}
+            {{#each sections}}
+              <li class="feature {{#if internal}}feature-internal{{/if}}">
+                <a href="{{url}}" class="feature-link">
+                  <div class="feature-icon">
+                    <i class="{{id}}-block-font-icon hide"></i>
+                    <script>setIcon({{ id }});</script>
+                  </div>
+                  <div class="feature-content">
+                    <h3 class="feature-title">
+                      {{name}} {{#if internal}}<span class="icon-lock" title="{{t 'internal'}}"></span>{{/if}}
+                    </h3>
+                    <p class="feature-desc">{{excerpt description characters=120}}</p>
+                  </div>
+                  <span class="feature-arrow" aria-hidden="true">›</span>
+                </a>
+              </li>
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      </ul>
+      {{pagination}}
+    {{/if}}
+
+  </div>
+</section>

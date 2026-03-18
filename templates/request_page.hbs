@@ -1,0 +1,272 @@
+<script>
+  var _templateName = "request-page";
+</script>
+
+<section class="vs-hero" role="region" aria-label="Help center hero">
+  <div class="vs-hero-inner">
+      <a href="https://support.vanillasoft.com/hc/en-us" class="vs-hero-title">
+        Vanillasoft Help Center
+      </a>
+
+<p class="vs-omnisearch-subtext">Search Vanillasoft guides and FAQs</p>
+<div class="vs-omnisearch" data-enhanced="true">
+  <div class="vs-omnisearch-shell">
+       <svg class="vs-omnisearch-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79L20 20.5 20.5 20l-5-6zM10 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+    </svg>
+          <form class="vs-omnisearch-form" role="search" data-search="" data-instant="true" autocomplete="off" action="/hc/en-us/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓" autocomplete="off"><input type="search" name="query" id="query" placeholder="Search" autocomplete="off" aria-label="Search">
+<input type="submit" name="commit" value="Search"></form>       
+            
+    
+        </div>
+
+<div class="vs-omnisearch-action">
+  </div>
+      </div>
+    </div>
+
+  <div class="vs-hero-shape vs-hero-shape-a" aria-hidden="true"></div>
+  <div class="vs-hero-shape vs-hero-shape-b" aria-hidden="true"></div>
+</section>
+
+<script>
+  // “/” focuses the search
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+      const q = document.getElementById('query'); if (q) { e.preventDefault(); q.focus(); q.select(); }
+    }
+  });
+
+  // Wire the external button to submit the proxy form with the live query value
+  (function () {
+    const q = document.getElementById('query');
+    const proxy = document.getElementById('vs-omni-proxy');
+    const btn = document.querySelector('.vs-omnisearch-submit');
+    const proxyForm = document.getElementById('vs-omni-form-fix');
+    if (!q || !proxy || !btn || !proxyForm) return;
+    btn.addEventListener('click', function () {
+      proxy.value = q.value || '';
+      proxyForm.submit();
+    });
+  })();
+
+  (function () {
+  var form  = document.querySelector('.vs-omnisearch-shell form.search');
+  var btn   = document.getElementById('vs-search-submit');
+  if (form && btn) btn.addEventListener('click', function(){ form.submit(); });
+})();
+  
+  document.addEventListener("DOMContentLoaded", function () {
+  const shells = document.querySelectorAll(".vs-omnisearch-shell");
+  shells.forEach(shell => {
+    const input = shell.querySelector("input[type='search']");
+    const btn = shell.querySelector(".vs-omnisearch-submit");
+
+    if (input) {
+      input.addEventListener("mouseenter", () => shell.classList.add("hover-input"));
+      input.addEventListener("mouseleave", () => shell.classList.remove("hover-input"));
+    }
+
+    if (btn) {
+      btn.addEventListener("mouseenter", () => shell.classList.remove("hover-input"));
+      btn.addEventListener("mouseleave", () => shell.classList.remove("hover-input"));
+    }
+  });
+});
+</script>
+
+
+
+<hr style="height:1px;visibility:hidden">
+<div class="section-page">
+
+<section class="sub-nav-wrapper">
+  <div class="container">
+
+    
+    
+    <nav class="sub-nav">
+    </nav>
+  </div>
+</section>
+  
+  
+  
+    <div class="container">{{breadcrumbs}}
+<div class="vs-titlebar">
+  <header class="my-activities-header">
+    <strong><font size="+3.5">{{request.subject}}</font></strong>
+  </header>
+
+  <a href="/hc/requests" class="vs-backcrumb" id="vs-backcrumb" aria-label="Back to My Tickets">
+    <svg class="vs-backcrumb__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+    </svg>
+    <span>Back to My Tickets</span>
+  </a>
+</div>
+<br>
+      
+  
+
+  <div class="request-container">
+    <section class="request-main">
+      {{satisfaction}}
+      <ul class="comment-list">
+        {{#each comments}}
+        <li id="{{anchor}}" class="comment">
+          <div class="comment-wrapper">
+            <div class="comment-info">
+              <div class="comment-author">
+                <div class="avatar comment-avatar">
+ 
+                  <img src="{{author.avatar_url}}" alt="Avatar" class="user-avatar" />
+                </div>
+
+                <div class="comment-meta">
+                  <span title="{{author.name}}">
+                    {{#link 'user_profile' id=author.id}} {{author.name}} {{/link}}
+                  </span>
+
+                  <ul class="meta-group">
+                    <li class="meta-data">{{date created_at timeago=true}}</li>
+                  </ul>
+                </div>
+              </div>
+
+              <section class="comment-body">{{body}}</section>
+
+              {{#if attachments}}
+              <ul class="attachments">
+                {{#each attachments}}
+                <li class="attachment-item">
+                  <a href="{{url}}" target="_blank" title="{{name}}">{{name}}</a>
+                  <div class="attachment-meta meta-group">
+                    <span class="attachment-meta-item meta-data">{{size}}</span>
+                    <a href="{{url}}" target="_blank" class="attachment-meta-item meta-data">{{t 'download'}}</a>
+                  </div>
+                </li>
+                {{/each}}
+              </ul>
+              {{/if}}
+            </div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+
+      {{pagination}} {{#if comment_callout}}
+      <div class="request-follow-up">
+        {{comment_callout}}
+      </div>
+      {{/if}} {{#form 'comment' class='comment-form'}}
+      <div class="avatar comment-avatar">
+        {{user_avatar class='user-avatar'}}
+      </div>
+
+      <div class="comment-container">
+        <div class="comment-show-container {{#validate 'body'}}hidden{{/validate}}">
+          <span class="comment-show-container-content">
+            {{t 'add_to_conversation'}}
+          </span>
+        </div>
+
+        <div class="comment-fields {{#validate 'body'}}shown{{/validate}}">
+          {{#if help_center.request_ccs_enabled}}
+          <div class="comment-ccs form-field">
+            {{token_field 'ccs' class='ccs-input'}}
+          </div>
+          {{/if}} {{textarea 'body' rows='7'}} {{#if upload}}
+          <div class="comment-attachments">
+            {{upload}}
+          </div>
+          {{/if}}
+        </div>
+
+        <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var ta = document.querySelector('#request_comment_body, .request-container textarea, .request-comment textarea, .comment-form textarea');
+    if (ta && !ta.getAttribute('placeholder')) {
+      ta.setAttribute('placeholder', 'Add a comment to this ticket for our team…');
+    }
+  });
+</script>
+        
+        <div class="comment-form-controls">
+          {{checkbox 'mark_as_solved'}} {{#if request.can_be_marked_as_solved}}
+
+          {{/if}}
+          
+          <span class="request-submit-comment {{#validate 'body'}}shown{{/validate}}">
+            {{input type='submit'}}
+          </span>
+          
+          <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var ta = document.querySelector('#request_comment_body, .request-container textarea, .request-comment textarea, .comment-form textarea');
+    var btn = document.querySelector('.request-submit-comment input[type="submit"]');
+    if (!ta || !btn) return;
+
+    function toggleSubmit() {
+      var hasText = ta.value.trim().length > 0;
+      btn.disabled = !hasText;
+      btn.setAttribute('aria-disabled', String(!hasText));
+    }
+
+    toggleSubmit();
+    ta.addEventListener('input', toggleSubmit);
+    ta.addEventListener('change', toggleSubmit);
+  });
+</script>
+
+          
+        </div>
+      </div>
+      {{/form}}
+    </section>
+
+    <section class="request-sidebar collapsible-sidebar">
+      <h5 class="collapsible-sidebar-title">{{t 'ticket_details'}}</h5>
+
+      <dl class="request-details">
+             <dt>Ticket ID</dt>
+        <dd>#{{request.id}}</dd>
+        
+        <dt>Submitted</dt>
+        <dd>{{date request.created_at}}</dd>
+
+        <dt>Last Updated</dt>
+        <dd>{{date request.updated_at}}</dd>
+
+       
+      </dl>
+
+      <dl class="request-details">
+        <status>Status</status>
+        <status-pill>
+          <span class="status-label status-label-{{request.status}}" title="{{request.status_name}}">
+            {{request.status_name}}
+          </span>
+        </status-pill>
+      </dl>
+
+      {{#if attachments}}
+        
+      <dl class="request-details request-attachments">
+        <dt>{{t 'attachments_heading'}}</dt>
+        <dd>
+          <ul class="attachments">
+            {{#each attachments}}
+            <li class="attachment-item">
+              <a href="{{url}}" target="_blank" title="{{name}}">{{name}}</a>
+              <div class="attachment-meta meta-group">
+                <span class="attachment-meta-item meta-data">{{size}}</span>
+                <a href="{{url}}" target="_blank" class="attachment-meta-item meta-data">{{t 'download'}}</a>
+              </div>
+            </li>
+            {{/each}}
+          </ul>
+        </dd>
+      </dl>
+      {{/if}}
+    </section>

@@ -1,0 +1,95 @@
+<script>
+  var _templateName = "contribution-page";
+</script>
+
+<section class="hero {{#if settings.show_bg_image}}hero-image{{/if}}">
+  <div class="hero-inner">
+      {{#isnt settings.welcome_message_title 'HIDE_ME'}}
+      <h1 class="welcome-message">
+        {{#is settings.welcome_message_title_dc 'NONE'}}{{settings.welcome_message_title}}{{else}}{{dc settings.welcome_message_title_dc}}{{/is}}
+      </h1>
+    {{/isnt}}
+   {{search instant=true class='search search-full'}}
+    {{#isnt settings.search_placeholder_text 'NONE'}}
+    <span id="search_placeholder_text" data-value="{{#is settings.search_placeholder_text_dc 'NONE'}}{{settings.search_placeholder_text}}{{else}}{{dc settings.search_placeholder_text_dc}}{{/is}}">
+    </span>
+    <script>
+    //dynamic placeholder in searchbar
+  var gtext = $("span#search_placeholder_text").data('value');
+  $('#query').attr('placeholder', gtext);
+    </script>
+     {{/isnt}}
+  </div>
+</section>
+
+<section class="sub-nav-wrapper">
+  <div class="container">
+    <nav class="sub-nav">
+      {{breadcrumbs}}
+    </nav>
+  </div>
+</section>
+
+<nav class="my-activities-nav collapsible-nav r-list">
+  <ul class="collapsible-nav-list container">
+    {{#if help_center.request_management_enabled}}
+    <li>{{link 'requests'}}</li>
+    {{/if}}
+    <li aria-selected=true>{{t 'contributions'}}</li>
+    <li>{{link 'subscriptions'}}</li>
+  </ul>
+</nav>
+
+<div class="container">
+  <header class="my-activities-header">
+    <h1>{{t 'contributions'}}</h1>
+    <nav class="my-activities-sub-nav collapsible-nav r-List">
+      <ul class="collapsible-nav-list">
+        {{#each filters}} {{#if selected}}
+        <li aria-selected=true>{{name}}</li>
+        {{else}}
+        <li>
+          <a href="{{url}}" title="{{name}}">{{name}}</a>
+        </li>
+        {{/if}} {{/each}}
+      </ul>
+    </nav>
+  </header>
+
+
+  <div class="requests">
+    {{#if contributions}}
+    <table class="table my-activities-table contributions-table">
+      <thead>
+        <tr>
+          <th>{{t 'title'}}</th>
+          <th>{{t 'type'}}</th>
+          <th>{{t 'vote_sum'}}</th>
+          <th>{{t 'last_activity'}}</th>
+          <th>{{t 'created'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each contributions}}
+        <tr>
+          <td>
+            <a href="{{url}}" class="striped-list-title" title="{{title}}">
+              {{excerpt title characters=60}}
+            </a>
+          </td>
+          <td>{{type}}</td>
+          <td>{{vote_sum}}</td>
+          <td>{{date last_activity_at}}</td>
+          <td>{{date created_at}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    <p class="no-activities">{{t 'no_contributions'}}</p>
+    {{/if}}
+  </div>
+
+  {{pagination}}
+
+</div>

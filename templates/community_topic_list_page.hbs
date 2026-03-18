@@ -1,0 +1,92 @@
+<section class="hero {{#if settings.show_community_bg_image}}community-hero  {{else}} community-hero-bg-color{{/if}}">
+  <div class="hero-inner">
+   {{#isnt settings.welcome_message_title 'HIDE_ME'}}
+      <h1 class="welcome-message">
+        {{#is settings.welcome_message_title_dc 'NONE'}}{{settings.welcome_message_title}}{{else}}{{dc settings.welcome_message_title_dc}}{{/is}}
+      </h1>
+    {{/isnt}}
+    {{search instant=true class='search search-full'}}
+    {{#isnt settings.search_placeholder_text 'NONE'}}
+    <span id="search_placeholder_text" data-value="{{#is settings.search_placeholder_text_dc 'NONE'}}{{settings.search_placeholder_text}}{{else}}{{dc settings.search_placeholder_text_dc}}{{/is}}">
+    </span>
+    <script>
+    //dynamic placeholder in searchbar
+  var gtext = $("span#search_placeholder_text").data('value');
+  $('#query').attr('placeholder', gtext);
+    </script>
+     {{/isnt}}
+  </div>
+</section>
+
+<section class="sub-nav-wrapper">
+  <div class="container">
+    <nav class="sub-nav">
+      {{breadcrumbs}}
+    </nav>
+  </div>
+</section>
+
+<div class="container">
+
+  <header class="page-header community-header">
+    <div class="page-header-item dropdown">
+      <div class="dropdown-toggle">
+        <h4>{{t 'community_topics'}}</h4>
+      </div>
+      <span class="dropdown-menu" role="menu">
+        {{#link 'topics' role='menuitem' selected='true'}} {{t 'show_topics'}} {{/link}} {{#link 'posts' role='menuitem'}} {{t 'show_all_posts'}}
+        {{/link}}
+      </span>
+    </div>
+
+  </header>
+
+  {{#unless topics}}
+  <p>{{t 'no_content'}}</p>
+  {{/unless}}
+
+  <div class="blocks topics">
+    <ul class="blocks-list topics-list">
+      {{#each topics}}
+      <li class="blocks-item topics-item {{#if internal}}blocks-item-internal{{/if}}">
+        <a href="{{url}}" class="blocks-item-link" title="{{name}}">
+          <h3 class="blocks-item-title">
+            {{name}} {{#if internal}}
+            <span class="icon-lock" title="{{t 'internal'}}"></span>
+            {{/if}}
+          </h3>
+          <p class="blocks-item-description">{{excerpt description}}</p>
+          <ul class="meta-group">
+            <li class="meta-data">{{t 'post_count' count=post_count}}</li>
+            <li class="meta-data">{{t 'follower_count' count=follower_count}}</li>
+          </ul>
+        </a>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+
+  {{pagination}}
+
+  <section class="community-relatives">
+    {{#if featured_posts}}
+    <section class="section community-featured-posts">
+      <h3>{{t 'featured_posts'}}</h3>
+      <ul class="promoted-articles article-list">
+        {{#each featured_posts}}
+        <li class="promoted-articles-item">
+          <a href="{{url}}" title="{{title}}">
+            {{title}}
+          </a>
+        </li>
+        {{/each}}
+      </ul>
+    </section>
+    {{/if}}
+<section class="section container community-footer">
+  {{link 'new_post' role='button' class='button-large'}}
+</section>
+    <section class="community-activity aactivity">
+      {{#if help_center.community_enabled}} {{recent_activity scope='community'}} {{/if}}
+    </section>
+  </section>

@@ -1,0 +1,115 @@
+<script>var _templateName="articles";</script>
+
+<script>
+  // Focus search on "/"
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+      const q = document.getElementById('query'); if (q) { e.preventDefault(); q.focus(); q.select(); }
+    }
+  });
+
+
+
+    // Toggle classes when hovering the search input only (avoid cross-animating the shell)
+    document.querySelectorAll('.vs-omnisearch-shell-article').forEach(shell => {
+      const input = shell.querySelector('input[type="search"]');
+      if (!input) return;
+      input.addEventListener('mouseenter', () => shell.classList.add('hover-input'));
+      input.addEventListener('mouseleave', () => shell.classList.remove('hover-input'));
+    });
+
+  
+    });
+  });
+</script>
+
+<section class="sub-nav-wrapper">
+  <div class="container">
+    <nav class="sub-nav-article">
+      {{breadcrumbs}}
+      <div class="vs-omnisearch-article" data-enhanced="true">
+        <div class="vs-omnisearch-shell-article">
+          <svg class="vs-omnisearch-icon-article" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79L20 20.5 20.5 20l-5-6zM10 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+          </svg>
+          <form class="vs-omnisearch-form" role="search" data-search="" data-instant="true" autocomplete="off" action="/hc/en-us/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓" autocomplete="off"><input type="search" name="query" id="query" placeholder="Search" autocomplete="off" aria-label="Search">
+</form>   
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<div class="container">
+  <div class="article-content-area" id="article-content-area">
+    <article class="article">
+      <header class="article-header {{#is settings.meta_block_visibility 'hide'}}follow_nowrap{{/is}}">
+        <h1 class="article-title" title="{{article.title}}">{{article.title}}</h1>
+        {{#if settings.follow_button_visibility}}{{subscribe}}{{/if}}
+
+        {{#if settings.meta_block_visibility}}
+        <div class="article-author">
+          <div class="avatar article-avatar">
+            {{#if article.author.agent}}<span class="icon-agent"></span>{{/if}}
+            <img src="{{article.author.avatar_url}}" alt="Avatar" class="user-avatar">
+          </div>
+          <div class="article-meta">
+            {{#link 'user_profile' id=article.author.id}}{{article.author.name}}{{/link}}
+            <ul class="meta-group">
+              {{#is article.created_at article.edited_at}}
+                <li class="meta-data">{{date article.created_at timeago=true}}</li>
+              {{else}}
+                <li class="meta-data">{{date article.edited_at timeago=true}}</li>
+                <li class="meta-data">{{t 'updated'}}</li>
+              {{/is}}
+            </ul>
+          </div>
+        </div>
+        {{/if}}
+      </header>
+
+      <section class="article-info">
+        <div class="article-content {{#is settings.meta_block_visibility 'hide'}}article-content-margin{{/is}}">
+          <div class="article-body">{{article.body}}</div>
+
+          {{#if attachments}}
+          <div class="article-attachments">
+            <ul class="attachments">
+              {{#each attachments}}
+              <li class="attachment-item">
+                <a href="{{url}}" target="_blank" title="{{name}}">{{name}}</a>
+                <div class="attachment-meta meta-group">
+                  <span class="attachment-meta-item meta-data">{{size}}</span>
+                  <a href="{{url}}" target="_blank" class="attachment-meta-item meta-data" title="{{t 'download'}}">{{t 'download'}}</a>
+                </div>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+          {{/if}}
+        </div>
+      </section>
+
+      <footer>
+        <div class="article-footer">
+          {{#if settings.article_share_block_visibility}}<div class="article-share">{{share}}</div>{{/if}}
+          {{#if settings.comment_block_visibility}}{{#if comments}}
+          <a href="#article-comments" class="article-comment-count" title="{{article.comment_count}}">
+            <span class="icon-comments"></span>{{article.comment_count}}
+          </a>
+          {{/if}}{{/if}}
+        </div>
+
+       
+      </footer>
+
+      <section class="article-relatives">
+        {{#if settings.recent_activity_visibility}}{{recent_articles}}{{/if}}
+        {{#if settings.related_article_visibility}}{{related_articles}}{{/if}}
+      </section>
+
+     
+    </article>
+  </div>
+</div>
+

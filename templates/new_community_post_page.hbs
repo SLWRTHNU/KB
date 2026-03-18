@@ -1,0 +1,59 @@
+<section class="hero {{#if settings.show_community_bg_image}}community-hero {{else}} community-hero-bg-color{{/if}}">
+  <div class="hero-inner">
+      {{#isnt settings.welcome_message_title 'HIDE_ME'}}
+      <h1 class="welcome-message">
+        {{#is settings.welcome_message_title_dc 'NONE'}}{{settings.welcome_message_title}}{{else}}{{dc settings.welcome_message_title_dc}}{{/is}}
+      </h1>
+    {{/isnt}}
+    {{search instant=true class='search search-full' scoped=true}}
+    <span id="search_placeholder_text" data-value="{{#is settings.search_placeholder_text_dc 'NONE'}}{{settings.search_placeholder_text}}{{else}}{{dc settings.search_placeholder_text_dc}}{{/is}}">
+    </span>
+  </div>
+</section>
+
+<section class="sub-nav-wrapper">
+  <div class="container">
+    <nav class="sub-nav">
+      {{breadcrumbs}}
+    </nav>
+  </div>
+</section>
+
+<div class="container">
+
+  <h1 class="form-header">
+    {{t 'what_is_your_post_about'}}
+  </h1>
+
+  <div class="form">
+    {{#form 'post' class='new_community_post'}}
+    <div class="form-field {{#required 'title'}} required {{/required}}">
+      {{label 'title'}} {{input 'title' autofocus=true}} {{#validate 'title'}}
+      <div class="notification notification-error notification-inline">
+        {{error 'title'}}
+      </div>
+      {{/validate}}
+    </div>
+
+    {{suggestion_list class='suggestion-list'}}
+
+    <div class="form-field {{#required 'details'}} required {{/required}}">
+      {{label 'details'}} {{wysiwyg 'details'}} {{#validate 'details'}}
+      <div class="notification notification-error notification-inline">
+        {{error 'details'}}
+      </div>
+      {{/validate}}
+    </div>
+
+    <div class="form-field {{#required 'topic'}} required {{/required}}">
+      {{label 'topic'}} {{select 'topic'}} {{#validate 'topic'}}
+      <div class="notification notification-error notification-inline">
+        {{error 'topic'}}
+      </div>
+      {{/validate}}
+    </div>
+
+    <footer>{{input type='submit'}}</footer>
+    {{/form}}
+  </div>
+</div>

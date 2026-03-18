@@ -1,0 +1,134 @@
+<script>var _templateName="homepage";</script>
+
+<section class="vs-hero" role="region" aria-label="Help center hero">
+  <div class="vs-hero-inner">
+      <a href="https://support.vanillasoft.com/hc/en-us" class="vs-hero-title">
+        Vanillasoft Help Center
+      </a>
+
+<p class="vs-omnisearch-subtext">Search Vanillasoft guides and FAQs</p>
+<div class="vs-omnisearch" data-enhanced="true">
+  <div class="vs-omnisearch-shell">
+       <svg class="vs-omnisearch-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79L20 20.5 20.5 20l-5-6zM10 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+    </svg>
+          <form class="vs-omnisearch-form" role="search" data-search="" data-instant="true" autocomplete="off" action="/hc/en-us/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓" autocomplete="off"><input type="search" name="query" id="query" placeholder="Search" autocomplete="off" aria-label="Search">
+<input type="submit" name="commit" value="Search"></form>       
+            
+    
+        </div>
+
+<div class="vs-omnisearch-action">
+  </div>
+      </div>
+    </div>
+
+  <div class="vs-hero-shape vs-hero-shape-a" aria-hidden="true"></div>
+  <div class="vs-hero-shape vs-hero-shape-b" aria-hidden="true"></div>
+</section>
+
+<script>
+  // “/” focuses the search
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+      const q = document.getElementById('query'); if (q) { e.preventDefault(); q.focus(); q.select(); }
+    }
+  });
+
+  // Wire the external button to submit the proxy form with the live query value
+  (function () {
+    const q = document.getElementById('query');
+    const proxy = document.getElementById('vs-omni-proxy');
+    const btn = document.querySelector('.vs-omnisearch-submit');
+    const proxyForm = document.getElementById('vs-omni-form-fix');
+    if (!q || !proxy || !btn || !proxyForm) return;
+    btn.addEventListener('click', function () {
+      proxy.value = q.value || '';
+      proxyForm.submit();
+    });
+  })();
+
+  (function () {
+  var form  = document.querySelector('.vs-omnisearch-shell form.search');
+  var btn   = document.getElementById('vs-search-submit');
+  if (form && btn) btn.addEventListener('click', function(){ form.submit(); });
+})();
+  
+  document.addEventListener("DOMContentLoaded", function () {
+  const shells = document.querySelectorAll(".vs-omnisearch-shell");
+  shells.forEach(shell => {
+    const input = shell.querySelector("input[type='search']");
+    const btn = shell.querySelector(".vs-omnisearch-submit");
+
+    if (input) {
+      input.addEventListener("mouseenter", () => shell.classList.add("hover-input"));
+      input.addEventListener("mouseleave", () => shell.classList.remove("hover-input"));
+    }
+
+    if (btn) {
+      btn.addEventListener("mouseenter", () => shell.classList.remove("hover-input"));
+      btn.addEventListener("mouseleave", () => shell.classList.remove("hover-input"));
+    }
+  });
+});
+</script>
+
+
+
+<hr style="height:1px;visibility:hidden">
+
+<section class="sub-nav-wrapper">
+  <div class="container">
+    <nav class="sub-nav">
+
+    </nav>
+  </div>
+</section>
+
+<div class="container">{{breadcrumbs}}
+  <header class="page-header">
+
+    
+    <strong><font size="+3.5">{{category.name}}</font></strong>
+  </header>
+  
+  <br>
+
+  <div class="category-container">
+    {{#if settings.catgsec_sidebar_visibility}}
+      <section class="sidebar collapsible-sidebar">
+        <h3 class="collapsible-sidebar-title sidenav-title menu-title">
+          {{#is settings.menu_title_dc 'NONE'}}{{settings.menu_title}}{{else}}{{dc settings.menu_title_dc}}{{/is}}
+        </h3>
+        <div class="kyle-category-sidebar-menu"></div>
+      </section>
+    {{/if}}
+
+    <div class="category-content">
+
+     <div class="section-grid">
+  {{#each sections}}
+          <section class="section-card">
+        <a class="section-card-cover" href="{{url}}" aria-label="{{name}}"></a>
+      <h3 class="section-tree-title">
+        <a href="{{url}}" title="{{name}}">{{name}}</a>
+      </h3>
+
+      {{#if articles}}
+      <ul class="article-list limited-articles">
+        {{#each articles}}
+        <li class="article-list-item{{#if promoted}} article-promoted{{/if}}">
+          {{#if promoted}}<span class="icon-star"></span>{{/if}}
+          <a href="{{url}}" class="article-list-link" title="{{title}}">{{title}}</a>
+        </li>
+        {{/each}}
+      </ul>
+      <a href="{{url}}" class="see-all-articles">{{t 'show_all_articles'}}</a>
+      {{else}}
+      <i class="section-empty">
+        <a href="{{url}}">{{t 'empty'}}</a>
+      </i>
+      {{/if}}
+    </section>
+  {{/each}}
+</div>

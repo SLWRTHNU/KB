@@ -1,0 +1,241 @@
+<script>var _templateName = "new-request-page";</script>
+
+<section class="vs-hero" role="region" aria-label="Help center hero">
+  <div class="vs-hero-inner">
+      <a href="https://support.vanillasoft.com/hc/en-us" class="vs-hero-title">
+        Vanillasoft Help Center
+      </a>
+
+    <p class="vs-omnisearch-subtext">Search Vanillasoft guides and FAQs</p>
+    <div class="vs-omnisearch" data-enhanced="true">
+      <div class="vs-omnisearch-shell">
+        <svg class="vs-omnisearch-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79L20 20.5 20.5 20l-5-6zM10 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+        </svg>
+        <form class="vs-omnisearch-form" role="search" action="/hc/en-us/search" method="get" aria-label="Search the help center">
+          {{search instant=true class="search search-full vs-instant-form"}}
+        </form>
+      </div>
+      <div class="vs-omnisearch-action"></div>
+    </div>
+  </div>
+ 
+  <div class="vs-hero-shape vs-hero-shape-a" aria-hidden="true"></div>
+  <div class="vs-hero-shape vs-hero-shape-b" aria-hidden="true"></div>
+</section>
+
+<script>
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+      const q = document.getElementById('query'); if (q) { e.preventDefault(); q.focus(); q.select(); }
+    }
+  });
+
+  (function () {
+    var form  = document.querySelector('.vs-omnisearch-shell form.search');
+    var btn   = document.getElementById('vs-search-submit');
+    if (form && btn) btn.addEventListener('click', function(){ form.submit(); });
+  })();
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const shells = document.querySelectorAll(".vs-omnisearch-shell");
+    shells.forEach(shell => {
+      const input = shell.querySelector("input[type='search']");
+      const btn = shell.querySelector(".vs-omnisearch-submit");
+      if (input) {
+        input.addEventListener("mouseenter", () => shell.classList.add("hover-input"));
+        input.addEventListener("mouseleave", () => shell.classList.remove("hover-input"));
+      }
+      if (btn) {
+        btn.addEventListener("mouseenter", () => shell.classList.remove("hover-input"));
+        btn.addEventListener("mouseleave", () => shell.classList.remove("hover-input"));
+      }
+    });
+  });
+</script>
+
+<hr style="height:1px;visibility:hidden">
+
+<section class="sub-nav-wrapper">
+  <div class="container">
+    <nav class="sub-nav">
+
+    </nav>
+  </div>
+</section>
+
+<div class="container">{{breadcrumbs}}
+  <header class="page-header">
+
+    
+    <strong><font size="+3.5">Contact Vanillasoft</font></strong>
+  </header>
+  
+  <br>
+    <div class="vs-form-shell">
+      <div class="vs-form-card">
+    
+        
+        
+        
+
+
+
+<section class="vs-banner">
+  <div class="vs-banner-inner">
+    <h2 class="vs-banner-title">Get in Touch with the Right Team</h2>
+    <p class="vs-banner-copy">
+     Fill out the form below and we’ll connect you with the right team. We typically reply the same day or, if we're closed, the next business day.
+    </p>
+  </div>
+</section>
+
+<section class="vs-blades" aria-label="Vanillasoft teams">
+  <div class="vs-blade" role="note" aria-label="Sales">
+    <h3>Sales</h3>
+    <p class="vs-blade-desc">
+      Learn about pricing, request a demo, or explore adding users and features to Vanillasoft.
+    </p>
+    <p class="vs-blade-phone"><strong>Phone:</strong> 972-200-0179 option 1</p>
+    <p class="vs-blade-hours"><strong>Hours (EST):</strong> Mon–Fri, 9am–5pm</p>
+  </div>
+
+  <div class="vs-blade" role="note" aria-label="Technical Support">
+    <h3>Technical Support</h3>
+    <p class="vs-blade-desc">
+      Guidance on troubleshooting, account access, configuration, and daily use of Vanillasoft.
+    </p>
+    <p class="vs-blade-phone"><strong>Phone:</strong> 972-200-0179 option 2</p>
+    <p class="vs-blade-hours"><strong>Hours (EST):</strong> Mon–Fri, 8am–8pm | Sat, 10am–4pm</p>
+  </div>
+
+  <div class="vs-blade" role="note" aria-label="Accounting">
+    <h3>Accounting</h3>
+    <p class="vs-blade-desc">
+      Get help with invoices, payment methods, receipts, and managing your subscription.
+    </p>
+    <p class="vs-blade-phone"><strong>Phone:</strong> 972-200-0179 option 3</p>
+    <p class="vs-blade-hours"><strong>Hours (EST):</strong> Mon–Fri, 10am–5pm</p>
+  </div>
+</section>
+
+
+
+        
+
+<section class="vs-form-band">
+  <div class="vs-form-card">
+    {{request_form}}
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var cb   = document.getElementById('request_custom_fields_41617844725147');    // the checkbox
+  var wrap = document.querySelector('.form-field.request_custom_fields_41617915210011'); // wrapper to hide/show
+  var inp  = document.getElementById('request_custom_fields_41617915210011');     // the input inside
+
+  if (!cb || !wrap || !inp) return;
+
+  function sync() {
+    if (cb.checked) {
+      wrap.classList.add('is-shown');
+      wrap.removeAttribute('hidden');
+      inp.disabled = false;
+    } else {
+      wrap.classList.remove('is-shown');
+      wrap.setAttribute('hidden', '');
+      inp.disabled = true;
+      // Optional: clear value when hiding
+      // inp.value = '';
+    }
+  }
+
+  // initial
+  sync();
+  // on change
+  cb.addEventListener('change', sync);
+});
+</script>
+
+<script>
+(function () {
+  var signedIn = {{#if signed_in}}true{{else}}false{{/if}};
+  if (signedIn) document.body.classList.add('vs-signed-in');
+
+  var FIELD_SELECTORS = [
+    '.request_custom_fields_40754361059739',
+    '.request_custom_fields_38050731911195',
+    '.request_custom_fields_38050792871579',
+    '.request_custom_fields_41617844725147',
+    '.request_custom_fields_38081504914587',
+    '#vs-login-email-field',
+    '.request_custom_fields_41617915210011',
+    '.request_anonymous_requester_email' // if you also hide anon email for signed-in
+  ];
+
+  function hideFieldHard(selector){
+    var el = document.querySelector(selector);
+    if (!el) return;
+    el.style.setProperty('display','none','important'); // beats our earlier !important flex
+    el.querySelectorAll('input,select,textarea').forEach(function(i){
+      if (i.type !== 'hidden') i.disabled = true;
+    });
+  }
+
+  if (signedIn) FIELD_SELECTORS.forEach(hideFieldHard);
+
+  // (belt & suspenders) explicitly hide the hint too
+  if (signedIn) {
+    var hint = document.getElementById('request_custom_fields_41617844725147_hint');
+    if (hint) hint.style.setProperty('display','none','important');
+  }
+})();
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Only runs if the anonymous email field exists (i.e., user not signed in)
+  var wrap  = document.querySelector('.form-field.request_anonymous_requester_email');
+  var input = document.getElementById('request_anonymous_requester_email');
+  if (!wrap || !input) return;
+
+  // If a hint doesn't exist yet, create one
+  var existingHint = wrap.querySelector('#request_anonymous_requester_email_hint');
+  if (!existingHint) {
+    var hint = document.createElement('p');
+    hint.id  = 'request_anonymous_requester_email_hint';
+    hint.textContent = 'Enter the email address where we should send updates.';
+    wrap.appendChild(hint);
+  }
+
+  // Ensure the input points to the hint for accessibility
+  var describedby = (input.getAttribute('aria-describedby') || '').trim();
+  if (!/\brequest_anonymous_requester_email_hint\b/.test(describedby)) {
+    input.setAttribute(
+      'aria-describedby',
+      (describedby ? describedby + ' ' : '') + 'request_anonymous_requester_email_hint'
+    );
+  }
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const box = document.getElementById('request_custom_fields_41617844725147');
+  const hint = document.getElementById('request_custom_fields_41617844725147_hint');
+  if (!box || !hint) return;
+
+  // Make the hint act like the visible label
+  hint.setAttribute('tabindex', '0');
+  hint.style.cursor = 'pointer';
+
+  function toggle() { box.checked = !box.checked; box.dispatchEvent(new Event('change', {bubbles:true})); }
+  hint.addEventListener('click', toggle);
+  hint.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+  });
+
+  // Improve ARIA association
+  box.setAttribute('aria-labelledby', hint.id);
+});
+</script>

@@ -1,0 +1,172 @@
+<script>
+  var _templateName = "requests-page";
+</script>
+
+<section class="vs-hero" role="region" aria-label="Help center hero">
+  <div class="vs-hero-inner">
+      <a href="https://support.vanillasoft.com/hc/en-us" class="vs-hero-title">
+        Vanillasoft Help Center
+      </a>
+
+<p class="vs-omnisearch-subtext">Search Vanillasoft guides and FAQs</p>
+<div class="vs-omnisearch" data-enhanced="true">
+  <div class="vs-omnisearch-shell">
+       <svg class="vs-omnisearch-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79L20 20.5 20.5 20l-5-6zM10 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+    </svg>
+          <form class="vs-omnisearch-form" role="search" data-search="" data-instant="true" autocomplete="off" action="/hc/en-us/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓" autocomplete="off"><input type="search" name="query" id="query" placeholder="Search" autocomplete="off" aria-label="Search">
+<input type="submit" name="commit" value="Search"></form>       
+            
+    
+        </div>
+
+<div class="vs-omnisearch-action">
+  </div>
+      </div>
+    </div>
+
+  <div class="vs-hero-shape vs-hero-shape-a" aria-hidden="true"></div>
+  <div class="vs-hero-shape vs-hero-shape-b" aria-hidden="true"></div>
+</section>
+
+<script>
+  // “/” focuses the search
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+      const q = document.getElementById('query'); if (q) { e.preventDefault(); q.focus(); q.select(); }
+    }
+  });
+
+  // Wire the external button to submit the proxy form with the live query value
+  (function () {
+    const q = document.getElementById('query');
+    const proxy = document.getElementById('vs-omni-proxy');
+    const btn = document.querySelector('.vs-omnisearch-submit');
+    const proxyForm = document.getElementById('vs-omni-form-fix');
+    if (!q || !proxy || !btn || !proxyForm) return;
+    btn.addEventListener('click', function () {
+      proxy.value = q.value || '';
+      proxyForm.submit();
+    });
+  })();
+
+  (function () {
+  var form  = document.querySelector('.vs-omnisearch-shell form.search');
+  var btn   = document.getElementById('vs-search-submit');
+  if (form && btn) btn.addEventListener('click', function(){ form.submit(); });
+})();
+  
+  document.addEventListener("DOMContentLoaded", function () {
+  const shells = document.querySelectorAll(".vs-omnisearch-shell");
+  shells.forEach(shell => {
+    const input = shell.querySelector("input[type='search']");
+    const btn = shell.querySelector(".vs-omnisearch-submit");
+
+    if (input) {
+      input.addEventListener("mouseenter", () => shell.classList.add("hover-input"));
+      input.addEventListener("mouseleave", () => shell.classList.remove("hover-input"));
+    }
+
+    if (btn) {
+      btn.addEventListener("mouseenter", () => shell.classList.remove("hover-input"));
+      btn.addEventListener("mouseleave", () => shell.classList.remove("hover-input"));
+    }
+  });
+});
+</script>
+
+<hr style="height:1px;visibility:hidden">
+<div class="section-page">
+
+<section class="sub-nav-wrapper">
+  <div class="container">
+    <nav class="sub-nav">
+
+      
+      <script>
+        var catID = $('.breadcrumbs li:nth-child(2) a')
+          .attr('href').match(/[0-9]+/)[0]
+      </script>
+    </nav>
+  </div>
+</section>
+
+  
+  <div class="container">{{breadcrumbs}}
+  <header class="my-activities-header">
+    <strong><font size="+3.5">My Tickets</font></strong>
+  </header>
+  <br>
+    
+
+  {{#form 'requests_filter' class='requests-table-toolbar'}}
+  <div class="search"><span class='requests-search-title'>Search Keywords:</span>
+    {{input 'query' id='quick-search' type='search' class='requests-search'}}
+  </div>
+
+
+
+  <div class="request-table-filter">
+    <span class='request-filter-label'>Ticket Status:</span> {{select 'status' id='request-status-select'
+    class='request-filter'}}
+  </div>
+  {{/form}} {{#if query}}
+  <div class="requests-search-info meta-data">
+    {{t 'requests_search_results_info' count=requests.length query=query}}
+  </div>
+  {{else}} {{#unless requests}}
+  <p class="no-activities">{{t 'no_requests'}}</p>
+  {{/unless}} {{/if}}
+
+  <div class="requests">
+    {{#if requests}}
+    <table class="table my-activities-table requests-table {{current_filter.identifier}}-requests">
+      <thead>
+        <tr>
+          <th><span class='activity-table-title'>Ticket Title</span></th>
+          <th><span class='activity-table-title'>Ticket ID</span></th>
+          <th>
+            {{#is current_filter.identifier 'my'}} {{#link 'requests' sort_by='created_at'}}<span class='activity-table-title'>Submitted</span>{{/link}} {{else}} {{t 'requester'}}
+            {{/is}}
+          </th>
+          <th>{{#link 'requests' sort_by='updated_at'}}<span class='activity-table-title'>Last Updated</span>{{/link}}</th>
+  <th><span class='activity-table-title'>Current Status</span></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {{#each requests}}
+        <tr {{#is status 'closed'}} class="request-closed" {{/is}}>
+          <td class="request-info requests-table-info">
+            <a href="{{url}}" class="striped-list-title" title="{{subject}}">
+              {{#if subject}} {{subject}} {{else}} {{excerpt description characters=50}} {{/if}}
+            </a>
+
+            <!-- Visible on mobile -->
+            <div class="requests-table-meta meta-group">
+              <span class="meta-data">#{{id}}</span>
+              <span class="meta-data">{{date created_at timeago=true}}</span>
+              <span class="status-label status-label-{{status}}" title="{{status_name}}">
+                {{status_name}}
+              </span>
+            </div>
+          </td>
+          <td>#{{id}}</td>
+          <td>
+            {{#is ../current_filter.identifier 'my'}} {{date created_at timeago=true}} {{else}} {{requester.name}} {{/is}}
+          </td>
+          <td>{{date updated_at timeago=true}}</td>
+          <td class="requests-table-status">
+            <span class="status-label status-label-{{status}}" title="{{status_name}}">
+              {{status_name}}
+            </span>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{/if}}
+  </div>
+
+  {{pagination}}
+</div>

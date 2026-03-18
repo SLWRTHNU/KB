@@ -1,0 +1,77 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Close the mobile menu when a nav link is clicked
+    var nav = document.querySelector('.vs-header-nav');
+    if (nav) {
+      nav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          var tgl = document.getElementById('vs-menu-toggle');
+          if (tgl) tgl.checked = false;
+        });
+      });
+    }
+
+    // Keep hamburger aria-expanded in sync with the checkbox
+    var toggle = document.getElementById('vs-menu-toggle');
+    var label  = document.querySelector('label.vs-hamburger[for="vs-menu-toggle"]');
+    var navEl  = document.getElementById('vs-nav');
+    if (toggle && label && navEl) {
+      var sync = function () {
+        var expanded = toggle.checked ? 'true' : 'false';
+        label.setAttribute('aria-expanded', expanded);
+        navEl.setAttribute('aria-expanded', expanded);
+      };
+      toggle.addEventListener('change', sync);
+      sync();
+    }
+  });
+</script>
+
+
+
+<header class="vs-header" role="banner">
+  <div class="vs-header-inner">
+  
+
+    <a class="vs-header-logo" href="https://support.vanillasoft.com/hc/en-us" aria-label="Vanillasoft">
+  <img
+    src="{{settings.logo}}"
+    srcset="{{settings.logo}} 1x, {{asset 'logo@2x.png'}} 2x"  {{!-- upload logo@2x.png in Assets --}}
+    alt="Vanillasoft"
+    width="160" height="40"          {{!-- intrinsic size prevents the flash --}}
+    style="height:40px;width:auto;display:block" />
+</a>
+
+    
+    <input type="checkbox" id="vs-menu-toggle" class="vs-menu-toggle">
+    <label for="vs-menu-toggle"
+           class="vs-hamburger"
+           aria-label="Toggle menu"
+           aria-controls="vs-nav"
+           aria-expanded="false">&#9776;</label>
+
+    <nav id="vs-nav" class="vs-header-nav" role="navigation" aria-label="Main">
+      <label for="vs-menu-toggle" class="vs-close" aria-label="Close menu">×</label>
+      <a href="https://status.vanillasoft.com" target="_blank" rel="noopener noreferrer">System Status</a>
+      <a href="https://helpdesk.me/join" target="_blank" rel="noopener noreferrer">Remote Support</a>
+      <a href="https://support.vanillasoft.com/hc/en-us/requests/new" target="_blank" rel="noopener noreferrer">Contact Vanillasoft</a>
+
+      {{!-- Auth block --}}
+      {{#if signed_in}}
+        
+              <a class="my-activities" href="/hc/en-us/requests">My Tickets</a>
+
+     
+      
+      {{else}}
+<div class="vs-header-auth">
+  {{#link 'sign_in' class='sign-in-link'}}Sign In{{/link}}
+</div>
+
+
+      {{/if}}
+    </nav>
+  </div>
+</header>
+
+
