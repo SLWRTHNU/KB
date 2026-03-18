@@ -923,9 +923,14 @@ transition: all 0.25s ease;
 }
 
 .breadcrumbs li:last-child a {
-  pointer-events: none;
   color: #414042;
   text-decoration: none;
+}
+
+.breadcrumbs li:last-child a:hover,
+.breadcrumbs li:last-child a:focus {
+  color: #1E5598;
+  text-decoration: underline;
 }
 
 
@@ -1595,7 +1600,7 @@ transition: all 0.25s ease;
 .recent-activity-item-comment {
   color: lighten($text_color, 20%);
   display: inline-block;
-  font-size: 00px;
+  font-size: 0;
 }
 
 .recent-activity-item-comment {

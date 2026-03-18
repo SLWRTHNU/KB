@@ -83,9 +83,7 @@ function getCookie(cname) {
 }
 function dontShowPopupAgain(element){
   var checked=$(element).prop("checked")
-  console.log(checked)
-  setCookie("hidepopup", 1, "18 Dec 2023 12:00:00 UTC")
-  console.log(getCookie("hidepopup"))
+  setCookie("hidepopup", 1, 365)
 }
 
 
@@ -315,24 +313,6 @@ $(document).ready(function() {
   }
 });
  
-document.addEventListener('DOMContentLoaded', function() {
-  var acc = document.getElementsByClassName("accordion");
-  var i;
-
-  for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var panel = this.nextElementSibling;
-      if (panel.style.maxHeight) {
-        panel.style.maxHeight = null;
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      }
-    });
-  }
-});
-
-
 // When the user clicks on <div>, open the popup
 function myFunction() {
   var popup = document.getElementById("myPopup");
@@ -529,37 +509,37 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 const userInfo = document.querySelector('.user-info');
-const toggle = userInfo.querySelector('[role="button"]');
-const menu = userInfo.querySelector('.dropdown-menu');
+if (userInfo) {
+  const toggle = userInfo.querySelector('[role="button"]');
+  const menu = userInfo.querySelector('.dropdown-menu');
 
-function openMenu() {
-  menu.removeAttribute('hidden');           // ensure it's renderable
-  // force reflow so the transition starts from the closed state
-  // (sometimes needed if your JS toggles quickly)
-  // eslint-disable-next-line no-unused-expressions
-  menu.offsetHeight; 
-  userInfo.classList.add('is-open');
-  userInfo.setAttribute('aria-expanded', 'true');
+  function openMenu() {
+    menu.removeAttribute('hidden');
+    menu.offsetHeight; // eslint-disable-line no-unused-expressions
+    userInfo.classList.add('is-open');
+    userInfo.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    userInfo.classList.remove('is-open');
+    userInfo.setAttribute('aria-expanded', 'false');
+
+    const onEnd = (e) => {
+      if (e.propertyName !== 'clip-path') return;
+      menu.setAttribute('hidden', '');
+      menu.removeEventListener('transitionend', onEnd);
+    };
+    menu.addEventListener('transitionend', onEnd, { once: true });
+  }
+
+  if (toggle) {
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isOpen = userInfo.classList.contains('is-open');
+      isOpen ? closeMenu() : openMenu();
+    });
+  }
 }
-
-function closeMenu() {
-  userInfo.classList.remove('is-open');
-  userInfo.setAttribute('aria-expanded', 'false');
-
-  // wait for the clip-path transition to finish, THEN hide
-  const onEnd = (e) => {
-    if (e.propertyName !== 'clip-path') return;
-    menu.setAttribute('hidden', '');        // now it's truly hidden (a11y too)
-    menu.removeEventListener('transitionend', onEnd);
-  };
-  menu.addEventListener('transitionend', onEnd, { once: true });
-}
-
-toggle.addEventListener('click', (e) => {
-  e.preventDefault();
-  const isOpen = userInfo.classList.contains('is-open');
-  isOpen ? closeMenu() : openMenu();
-});
 
 
 

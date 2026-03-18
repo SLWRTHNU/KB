@@ -84,8 +84,12 @@
 
       
       <script>
-        var catID = $('.breadcrumbs li:nth-child(2) a')
-          .attr('href').match(/[0-9]+/)[0]
+        var catID = (function() {
+          var el = document.querySelector('.breadcrumbs li:nth-child(2) a');
+          if (!el) return '';
+          var m = (el.getAttribute('href') || '').match(/[0-9]+/);
+          return m ? m[0] : '';
+        })();
       </script>
     </nav>
   </div>
@@ -96,7 +100,7 @@
   <header class="page-header">
 
     
-    <strong><font size="+3.5">{{section.name}}</font></strong>
+    <h1 class="page-header-title">{{section.name}}</h1>
   </header>
     
     
