@@ -1,0 +1,854 @@
+{
+  "name": "Redesign - No Banner - No Vote - By Kyle",
+  "author": "Kyle Beaulieu",
+  "version": "7.0",
+  "api_version": 1,
+  "default_locale": "en-us",
+  "settings": [
+    {
+      "label": "colors_group_label",
+      "variables": [
+        {
+          "identifier": "brand_color",
+          "type": "color",
+          "description": "brand_color_description",
+          "label": "brand_color_label",
+          "value": "rgba(36, 116, 187, 1)"
+        },
+        {
+          "identifier": "brand_text_color",
+          "type": "color",
+          "description": "brand_text_color_description",
+          "label": "brand_text_color_label",
+          "value": "rgba(180, 185, 189, 1)"
+        },
+        {
+          "identifier": "text_color",
+          "type": "color",
+          "description": "text_color_description",
+          "label": "text_color_label",
+          "value": "rgba(33, 37, 41, 1)"
+        },
+        {
+          "identifier": "link_color",
+          "type": "color",
+          "description": "link_color_description",
+          "label": "link_color_label",
+          "value": "rgba(81, 168, 230, 1)"
+        },
+        {
+          "identifier": "background_color",
+          "type": "color",
+          "description": "background_color_description",
+          "label": "background_color_label",
+          "value": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "label": "header_footer_group_label",
+      "variables": [
+        {
+          "identifier": "minimal_header",
+          "type": "list",
+          "description": "minimal_header_description",
+          "label": "minimal_header_label",
+          "value": "hide",
+          "options": [
+            {
+              "label": "show",
+              "value": "show"
+            },
+            {
+              "label": "hide",
+              "value": "hide"
+            }
+          ]
+        },
+        {
+          "identifier": "header_background_color",
+          "type": "color",
+          "description": "header_background_color_description",
+          "label": "header_background_color_label",
+          "value": "rgba(255, 255, 255, 1)"
+        },
+        {
+          "identifier": "header_text_color",
+          "type": "color",
+          "description": "header_text_color_description",
+          "label": "header_text_color_label",
+          "value": "rgba(36, 116, 187, 1)"
+        },
+        {
+          "identifier": "minimal_footer",
+          "type": "list",
+          "description": "minimal_footer_description",
+          "label": "minimal_footer_label",
+          "value": "show",
+          "options": [
+            {
+              "label": "show",
+              "value": "show"
+            },
+            {
+              "label": "hide",
+              "value": "hide"
+            }
+          ]
+        },
+        {
+          "identifier": "footer_background_color",
+          "type": "color",
+          "description": "footer_background_color_description",
+          "label": "footer_background_color_label",
+          "value": "rgba(231, 231, 224, 1)"
+        },
+        {
+          "identifier": "footer_text_color",
+          "type": "color",
+          "description": "footer_text_color_description",
+          "label": "footer_text_color_label",
+          "value": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "label": "fonts_group_label",
+      "variables": [
+        {
+          "identifier": "heading_font",
+          "type": "list",
+          "description": "heading_font_description",
+          "label": "heading_font_label",
+          "value": "'Source Sans Pro', sans-serif",
+          "options": [
+            {
+              "label": "System",
+              "value": "'Source Sans Pro', sans-serif"
+            },
+            {
+              "label": "Arial",
+              "value": "Arial, 'Helvetica Neue', Helvetica, sans-serif"
+            },
+            {
+              "label": "Arial Black",
+              "value": "'Arial Black', Arial, 'Helvetica Neue', Helvetica, sans-serif"
+            },
+            {
+              "label": "Baskerville",
+              "value": "Baskerville, 'Times New Roman', Times, serif"
+            },
+            {
+              "label": "Century Gothic",
+              "value": "'Century Gothic', AppleGothic, sans-serif"
+            },
+            {
+              "label": "Copperplate Light",
+              "value": "'Copperplate Light', 'Copperplate Gothic Light', serif"
+            },
+            {
+              "label": "Courier New",
+              "value": "'Courier New', Courier, monospace"
+            },
+            {
+              "label": "Futura",
+              "value": "Futura, 'Century Gothic', AppleGothic, sans-serif"
+            },
+            {
+              "label": "Garamond",
+              "value": "Garamond, 'Hoefler Text', Times New Roman, Times, serif"
+            },
+            {
+              "label": "Geneva",
+              "value": "Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif"
+            },
+            {
+              "label": "Georgia",
+              "value": "Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif"
+            },
+            {
+              "label": "Helvetica",
+              "value": "Helvetica, Arial, sans-serif"
+            },
+            {
+              "label": "Helvetica Neue",
+              "value": "'Helvetica Neue', Arial, Helvetica, sans-serif"
+            },
+            {
+              "label": "Impact",
+              "value": "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+            },
+            {
+              "label": "Lucida Grande",
+              "value": "'Lucida Grande', 'Lucida Sans', 'Lucida Sans Unicode', sans-serif"
+            },
+            {
+              "label": "Trebuchet MS",
+              "value": "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"
+            }
+          ]
+        },
+        {
+          "identifier": "text_font",
+          "type": "list",
+          "description": "text_font_description",
+          "label": "text_font_label",
+          "value": "'Source Sans Pro', sans-serif",
+          "options": [
+            {
+              "label": "System",
+              "value": "'Source Sans Pro', sans-serif"
+            },
+            {
+              "label": "Arial",
+              "value": "Arial, 'Helvetica Neue', Helvetica, sans-serif"
+            },
+            {
+              "label": "Arial Black",
+              "value": "'Arial Black', Arial, 'Helvetica Neue', Helvetica, sans-serif"
+            },
+            {
+              "label": "Baskerville",
+              "value": "Baskerville, 'Times New Roman', Times, serif"
+            },
+            {
+              "label": "Century Gothic",
+              "value": "'Century Gothic', AppleGothic, sans-serif"
+            },
+            {
+              "label": "Copperplate Light",
+              "value": "'Copperplate Light', 'Copperplate Gothic Light', serif"
+            },
+            {
+              "label": "Courier New",
+              "value": "'Courier New', Courier, monospace"
+            },
+            {
+              "label": "Futura",
+              "value": "Futura, 'Century Gothic', AppleGothic, sans-serif"
+            },
+            {
+              "label": "Garamond",
+              "value": "Garamond, 'Hoefler Text', Times New Roman, Times, serif"
+            },
+            {
+              "label": "Geneva",
+              "value": "Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif"
+            },
+            {
+              "label": "Georgia",
+              "value": "Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif"
+            },
+            {
+              "label": "Helvetica",
+              "value": "Helvetica, Arial, sans-serif"
+            },
+            {
+              "label": "Helvetica Neue",
+              "value": "'Helvetica Neue', Arial, Helvetica, sans-serif"
+            },
+            {
+              "label": "Impact",
+              "value": "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+            },
+            {
+              "label": "Lucida Grande",
+              "value": "'Lucida Grande', 'Lucida Sans', 'Lucida Sans Unicode', sans-serif"
+            },
+            {
+              "label": "Trebuchet MS",
+              "value": "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "brand_group_label",
+      "variables": [
+        {
+          "identifier": "logo",
+          "type": "file",
+          "description": "logo_description",
+          "label": "logo_label"
+        },
+        {
+          "identifier": "favicon",
+          "type": "file",
+          "description": "favicon_description",
+          "label": "favicon_label"
+        }
+      ]
+    },
+    {
+      "label": "images_group_label",
+      "variables": [
+        {
+          "identifier": "show_bg_image",
+          "type": "checkbox",
+          "description": "home_bg_visibility_desc",
+          "label": "home_bg_visibility_label",
+          "value": true
+        },
+        {
+          "identifier": "hero_home_bg_color",
+          "type": "color",
+          "description": "hero_home_bg_desc",
+          "label": "hero_bg_home",
+          "value": "rgba(36, 116, 187, 1)"
+        },
+        {
+          "identifier": "homepage_background_image",
+          "type": "file",
+          "description": "homepage_background_image_description",
+          "label": "homepage_background_image_label"
+        },
+        {
+          "identifier": "show_community_bg_image",
+          "type": "checkbox",
+          "description": "community_bg_visibility_desc",
+          "label": "community_bg_visibility_label",
+          "value": true
+        },
+        {
+          "identifier": "hero_community_bg_color",
+          "type": "color",
+          "description": "hero_community_bg_desc",
+          "label": "community_bg_banner",
+          "value": "rgba(57, 118, 183, 1)"
+        },
+        {
+          "identifier": "community_background_image",
+          "type": "file",
+          "description": "community_background_image_description",
+          "label": "community_background_image_label"
+        },
+        {
+          "identifier": "error_image",
+          "type": "file",
+          "description": "error_image_description",
+          "label": "error_image_label"
+        }
+      ]
+    },
+    {
+      "label": "welcome_group_label",
+      "variables": [
+        {
+          "identifier": "welcome_message_title",
+          "type": "text",
+          "description": "welcome_message_description_label",
+          "label": "welcome_message_title_label",
+          "value": "What do you need help with?"
+        },
+        {
+          "identifier": "welcome_message_color",
+          "type": "color",
+          "description": "welcome_message_color_description",
+          "label": "welcome_message_color_label",
+          "value": "rgba(255, 255, 255, 1)"
+        },
+        {
+          "identifier": "welcome_message_title_dc",
+          "type": "text",
+          "description": "block_title_dc_description",
+          "label": "block_title_dc_label",
+          "value": "NONE"
+        }
+      ]
+    },
+    {
+      "label": "placeholder_group_label",
+      "variables": [
+        {
+          "identifier": "search_placeholder_text",
+          "type": "text",
+          "description": "search_placeholder_text_description",
+          "label": "search_placeholder_text_label",
+          "value": "Search"
+        },
+        {
+          "identifier": "search_placeholder_text_dc",
+          "type": "text",
+          "description": "search_placeholder_text_dc_description",
+          "label": "search_placeholder_text_dc_label",
+          "value": "NONE"
+        }
+      ]
+    },
+    {
+      "label": "homepage_blocks_group_label",
+      "variables": [
+        {
+          "identifier": "category_block_visibility",
+          "type": "checkbox",
+          "description": "category_block_visibility_description",
+          "label": "category_block_visibility_label",
+          "value": false
+        },
+        {
+          "identifier": "custom_block_visibility",
+          "type": "checkbox",
+          "description": "custom_block_visibility_description",
+          "label": "custom_block_visibility_label",
+          "value": true
+        },
+        {
+          "identifier": "show_knowledge_base_tree",
+          "type": "checkbox",
+          "description": "knowledge_base_visibility_description",
+          "label": "knowledge_base_visibility_label",
+          "value": false
+        }
+      ]
+    },
+    {
+      "label": "first_block_group_label",
+      "variables": [
+        {
+          "identifier": "first_block_icon",
+          "type": "file",
+          "description": "block_icon_description",
+          "label": "block_icon_label"
+        },
+        {
+          "identifier": "first_block_hover_icon",
+          "type": "file",
+          "description": "block_hover_icon_description",
+          "label": "block_hover_icon_label"
+        },
+        {
+          "identifier": "first_block_font_icon",
+          "type": "text",
+          "description": "block_font_icon_description",
+          "label": "block_font_icon_label",
+          "value": "NONE"
+        },
+        {
+          "identifier": "first_block_title",
+          "type": "text",
+          "description": "block_title_description",
+          "label": "block_title_label",
+          "value": "Get Started"
+        },
+        {
+          "identifier": "first_block_title_dc",
+          "type": "text",
+          "description": "block_title_dc_description",
+          "label": "block_title_dc_label",
+          "value": "NONE"
+        },
+        {
+          "identifier": "first_block_url",
+          "type": "text",
+          "description": "block_url_description",
+          "label": "block_url_label",
+          "value": "#"
+        },
+        {
+          "identifier": "first_block_description",
+          "type": "text",
+          "description": "block_text_description",
+          "label": "block_description_label",
+          "value": "Access your account, set roles, and complete day-one setup."
+        },
+        {
+          "identifier": "first_block_description_dc",
+          "type": "text",
+          "description": "block_title_dc_description",
+          "label": "block_title_dc_label",
+          "value": "NONE"
+        }
+      ]
+    },
+    {
+      "label": "second_block_group_label",
+      "variables": [
+        {
+          "identifier": "second_block_icon",
+          "type": "file",
+          "description": "block_icon_description",
+          "label": "block_icon_label"
+        },
+        {
+          "identifier": "second_block_hover_icon",
+          "type": "file",
+          "description": "block_hover_icon_description",
+          "label": "block_hover_icon_label"
+        },
+        {
+          "identifier": "second_block_font_icon",
+          "type": "text",
+          "description": "block_font_icon_description",
+          "label": "block_font_icon_label",
+          "value": "NONE"
+        },
+        {
+          "identifier": "second_block_title",
+          "type": "text",
+          "description": "block_title_description",
+          "label": "block_title_label",
+          "value": "Admin & Setup"
+        },
+        {
+          "identifier": "second_block_title_dc",
+          "type": "text",
+          "description": "block_title_dc_description",
+          "label": "block_title_dc_label",
+          "value": "NONE"
+        },
+        {
+          "identifier": "second_block_url",
+          "type": "text",
+          "description": "block_url_description",
+          "label": "block_url_label",
+          "value": "#"
+        },
+        {
+          "identifier": "second_block_description",
+          "type": "text",
+          "description": "block_text_description",
+          "label": "block_description_label",
+          "value": "Configure projects, fields, routing, and organization settings."
+        },
+        {
+          "identifier": "second_block_description_dc",
+          "type": "text",
+          "description": "block_title_dc_description",
+          "label": "block_title_dc_label",
+          "value": "NONE"
+        }
+      ]
+    },
+    {
+      "label": "third_block_group_label",
+      "variables": [
+        {
+          "identifier": "third_block_icon",
+          "type": "file",
+          "description": "block_icon_description",
+          "label": "block_icon_label"
+        },
+        {
+          "identifier": "third_block_hover_icon",
+          "type": "file",
+          "description": "block_hover_icon_description",
+          "label": "block_hover_icon_label"
+        },
+        {
+          "identifier": "third_block_font_icon",
+          "type": "text",
+          "description": "block_font_icon_description",
+          "label": "block_font_icon_label",
+          "value": "NONE"
+        },
+        {
+          "identifier": "third_block_title",
+          "type": "text",
+          "description": "block_title_description",
+          "label": "block_title_label",
+          "value": "Using Vanillasoft"
+        },
+        {
+          "identifier": "third_block_title_dc",
+          "type": "text",
+          "description": "block_title_dc_description",
+          "label": "block_title_dc_label",
+          "value": "NONE"
+        },
+        {
+          "identifier": "third_block_url",
+          "type": "text",
+          "description": "block_url_description",
+          "label": "block_url_label",
+          "value": "#"
+        },
+        {
+          "identifier": "third_block_description",
+          "type": "text",
+          "description": "block_text_description",
+          "label": "block_description_label",
+          "value": "Workflows for reps and managers: calling, contacts, queues."
+        },
+        {
+          "identifier": "third_block_description_dc",
+          "type": "text",
+          "description": "block_title_dc_description",
+          "label": "block_title_dc_label",
+          "value": "NONE"
+        }
+      ]
+    },
+    {
+      "label": "fourth_block_group_label",
+      "variables": [
+        {
+          "identifier": "fourth_block_icon",
+          "type": "file",
+          "description": "block_icon_description",
+          "label": "block_icon_label"
+        },
+        {
+          "identifier": "fourth_block_hover_icon",
+          "type": "file",
+          "description": "block_hover_icon_description",
+          "label": "block_hover_icon_label"
+        },
+        {
+          "identifier": "fourth_block_font_icon",
+          "type": "text",
+          "description": "block_font_icon_description",
+          "label": "block_font_icon_label",
+          "value": "NONE"
+        },
+        {
+          "identifier": "fourth_block_title",
+          "type": "text",
+          "description": "block_title_description",
+          "label": "block_title_label",
+          "value": "Communications"
+        },
+        {
+          "identifier": "fourth_block_title_dc",
+          "type": "text",
+          "description": "block_title_dc_description",
+          "label": "block_title_dc_label",
+          "value": "NONE"
+        },
+        {
+          "identifier": "fourth_block_url",
+          "type": "text",
+          "description": "block_url_description",
+          "label": "block_url_label",
+          "value": "#"
+        },
+        {
+          "identifier": "fourth_block_description",
+          "type": "text",
+          "description": "block_text_description",
+          "label": "block_description_label",
+          "value": "Email, voice, SMS, and calendar: connect, send, track, troubleshoot."
+        },
+        {
+          "identifier": "fourth_block_description_dc",
+          "type": "text",
+          "description": "block_title_dc_description",
+          "label": "block_title_dc_label",
+          "value": "NONE"
+        }
+      ]
+    },
+    {
+      "label": "fifth_block_group_label",
+      "variables": [
+        {
+          "identifier": "fifth_block_icon",
+          "type": "file",
+          "description": "block_icon_description",
+          "label": "block_icon_label"
+        },
+        {
+          "identifier": "fifth_block_hover_icon",
+          "type": "file",
+          "description": "block_hover_icon_description",
+          "label": "block_hover_icon_label"
+        },
+        {
+          "identifier": "fifth_block_font_icon",
+          "type": "text",
+          "description": "block_font_icon_description",
+          "label": "block_font_icon_label",
+          "value": "NONE"
+        },
+        {
+          "identifier": "fifth_block_title",
+          "type": "text",
+          "description": "block_title_description",
+          "label": "block_title_label",
+          "value": "Integrations & Analytics"
+        },
+        {
+          "identifier": "fifth_block_title_dc",
+          "type": "text",
+          "description": "block_title_dc_description",
+          "label": "block_title_dc_label",
+          "value": "NONE"
+        },
+        {
+          "identifier": "fifth_block_url",
+          "type": "text",
+          "description": "block_url_description",
+          "label": "block_url_label",
+          "value": "#"
+        },
+        {
+          "identifier": "fifth_block_description",
+          "type": "text",
+          "description": "block_text_description",
+          "label": "block_description_label",
+          "value": "CRM and web leads, data import/export, dashboards, reports."
+        },
+        {
+          "identifier": "fifth_block_description_dc",
+          "type": "text",
+          "description": "block_title_dc_description",
+          "label": "block_title_dc_label",
+          "value": "NONE"
+        }
+      ]
+    },
+    {
+      "label": "article_template_group_label",
+      "variables": [
+        {
+          "identifier": "show_articles_in_section",
+          "type": "checkbox",
+          "description": "articles_in_section_description",
+          "label": "articles_in_section_label",
+          "value": true
+        },
+        {
+          "identifier": "follow_button_visibility",
+          "type": "checkbox",
+          "description": "follow_button_descrption",
+          "label": "follow_button_label",
+          "value": false
+        },
+        {
+          "identifier": "recent_activity_visibility",
+          "type": "checkbox",
+          "description": "recent_article_description",
+          "label": "recent_article_label",
+          "value": true
+        },
+        {
+          "identifier": "related_article_visibility",
+          "type": "checkbox",
+          "description": "related_article_description",
+          "label": "related_article_label",
+          "value": true
+        },
+        {
+          "identifier": "comment_block_visibility",
+          "type": "checkbox",
+          "description": "block_visibility_description",
+          "label": "comment_block_visibility_label",
+          "value": false
+        },
+        {
+          "identifier": "sidebar_block_visibility",
+          "type": "checkbox",
+          "description": "block_visibility_description",
+          "label": "sidebar_block_visibility_label",
+          "value": false
+        },
+        {
+          "identifier": "meta_block_visibility",
+          "type": "checkbox",
+          "description": "block_visibility_description",
+          "label": "meta_block_visibility_label",
+          "value": false
+        },
+        {
+          "identifier": "article_share_block_visibility",
+          "type": "checkbox",
+          "description": "block_visibility_description",
+          "label": "article_share_block_visibility_label",
+          "value": false
+        },
+        {
+          "identifier": "article_menu_title",
+          "type": "text",
+          "description": "article_menu_title_description",
+          "label": "article_menu_title_label",
+          "value": "Menu*****"
+        },
+        {
+          "identifier": "article_menu_title_dc",
+          "type": "text",
+          "description": "article_menu_title_dc_description",
+          "label": "article_menu_title_dc_label",
+          "value": "NONE"
+        }
+      ]
+    },
+    {
+      "label": "catgsec_sidebarsettings_group_label",
+      "variables": [
+        {
+          "identifier": "catgsec_sidebar_visibility",
+          "type": "checkbox",
+          "description": "block_visibility_description",
+          "label": "catgsec_sidebar_visibility_label",
+          "value": false
+        },
+        {
+          "identifier": "menu_title",
+          "type": "text",
+          "description": "menu_title_description",
+          "label": "menu_title_label",
+          "value": "Menu"
+        },
+        {
+          "identifier": "menu_title_dc",
+          "type": "text",
+          "description": "menu_title_dc_description",
+          "label": "menu_title_dc_label",
+          "value": "NONE"
+        }
+      ]
+    },
+    {
+      "label": "searchsidebar_label",
+      "variables": [
+        {
+          "identifier": "search_sidebar",
+          "type": "checkbox",
+          "description": "search_sidebar_description",
+          "label": "search_sidebar_label",
+          "value": false
+        }
+      ]
+    },
+    {
+      "label": "social_media_group",
+      "variables": [
+        {
+          "identifier": "twitter_link",
+          "type": "text",
+          "description": "twitter_link_description",
+          "label": "twitter_link_label",
+          "value": "#https://twitter.com/vanillasoft"
+        },
+        {
+          "identifier": "facebook_link",
+          "type": "text",
+          "description": "facebook_link_description",
+          "label": "facebook_link_label",
+          "value": "#https://www.facebook.com/vanillasoft"
+        },
+        {
+          "identifier": "youtube_link",
+          "type": "text",
+          "description": "youtube_link_description",
+          "label": "youtube_link_label",
+          "value": "#https://www.youtube.com/user/vanillasoftvideos"
+        },
+        {
+          "identifier": "linkedin_link",
+          "type": "text",
+          "description": "linkedin_link_description",
+          "label": "linkedin_link_label",
+          "value": "#https://www.linkedin.com/company/vanillasoft/"
+        },
+        {
+          "identifier": "instagram_link",
+          "type": "text",
+          "description": "instagram_link_description",
+          "label": "instagram_link_label",
+          "value": "#https://www.instagram.com/vanillasoft/"
+        }
+      ]
+    }
+  ]
+}
