@@ -28,14 +28,12 @@
 </section>
 
 <script>
-  // “/” focuses the search
   document.addEventListener('keydown', e => {
     if (e.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
       const q = document.getElementById('query'); if (q) { e.preventDefault(); q.focus(); q.select(); }
     }
   });
 
-  // Wire the external button to submit the proxy form with the live query value
   (function () {
     const q = document.getElementById('query');
     const proxy = document.getElementById('vs-omni-proxy');

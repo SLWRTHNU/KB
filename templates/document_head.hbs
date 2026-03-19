@@ -1,7 +1,5 @@
-<!-- document_head.hbs (near the top) -->
 <script>
 (function () {
-  // Match both /hc/articles/ID and /hc/LOCALE/articles/ID
   var href = String(window.location.href).toLowerCase();
   var m = href.match(/\/hc(?:\/[a-z]{2}(?:-[a-z]{2})?)?\/articles\/(\d+)/i);
   if (m && m[1] === '7595177751067') {
@@ -20,34 +18,6 @@
 <script src="{{asset 'category-sidebar-navigation.min.js'}}"></script>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
 <script>
-/**
-  * Icon for home category/section blocks
-  *
-  * Upload icon (ID.png) to assets for default block Icon
-  * Upload icon (hover_ID.png) to assets for hover block Icon
-  * Replace ID with category/section ID
-  * For font-icon, open the icon page and copy the class name attached in the tag as: <!--<i class="fas fa-pencil-alt"></i>-->
-  * Font-icon does not need a separate hover counterpart, as it is a font and will change its color as the text color changes.
-  *
-  * Once asset is uploaded, click on it so details is shown in right pane
-  * Copy the text written under script tag and paste it below
-  *
-  * Your code should look like the below lines -
-  *  var assets360000077645 = "{{asset '360000077645.jpg'}}";
-  *  var assetsHover360000077645 = "{{asset 'hover_360000077645.jpg'}}";
-  *  var assets360000077645 = "fas fa-pencil-alt";
-  **/
-
-  // Paste copied code here
-
-</script>
-
-<script>
-  /**
-   * Returns URL of image
-   *
-  **/
-
   function getAssetURLById(id) {
     return {
       blockIcon: window["assets" + id],
@@ -55,10 +25,6 @@
     }
   }
 
-  /**
-   * sets the image url from assets id
-   *
-  **/
   function setIcon(id) {
     var icon = getAssetURLById(id);
 
@@ -81,6 +47,5 @@
       }
     }
   }
-
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">

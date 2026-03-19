@@ -68,7 +68,7 @@
   <header class="page-header">
 
     
-    <strong><font size="+3.5">Contact Vanillasoft</font></strong>
+    <h1 class="page-header-title">Contact Vanillasoft</h1>
   </header>
   
   <br>
@@ -131,9 +131,9 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  var cb   = document.getElementById('request_custom_fields_41617844725147');    // the checkbox
-  var wrap = document.querySelector('.form-field.request_custom_fields_41617915210011'); // wrapper to hide/show
-  var inp  = document.getElementById('request_custom_fields_41617915210011');     // the input inside
+  var cb   = document.getElementById('request_custom_fields_41617844725147');
+  var wrap = document.querySelector('.form-field.request_custom_fields_41617915210011');
+  var inp  = document.getElementById('request_custom_fields_41617915210011');
 
   if (!cb || !wrap || !inp) return;
 
@@ -146,14 +146,10 @@ document.addEventListener('DOMContentLoaded', function () {
       wrap.classList.remove('is-shown');
       wrap.setAttribute('hidden', '');
       inp.disabled = true;
-      // Optional: clear value when hiding
-      // inp.value = '';
     }
   }
 
-  // initial
   sync();
-  // on change
   cb.addEventListener('change', sync);
 });
 </script>
@@ -171,13 +167,13 @@ document.addEventListener('DOMContentLoaded', function () {
     '.request_custom_fields_38081504914587',
     '#vs-login-email-field',
     '.request_custom_fields_41617915210011',
-    '.request_anonymous_requester_email' // if you also hide anon email for signed-in
+    '.request_anonymous_requester_email'
   ];
 
   function hideFieldHard(selector){
     var el = document.querySelector(selector);
     if (!el) return;
-    el.style.setProperty('display','none','important'); // beats our earlier !important flex
+    el.style.setProperty('display','none','important');
     el.querySelectorAll('input,select,textarea').forEach(function(i){
       if (i.type !== 'hidden') i.disabled = true;
     });
@@ -185,7 +181,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (signedIn) FIELD_SELECTORS.forEach(hideFieldHard);
 
-  // (belt & suspenders) explicitly hide the hint too
   if (signedIn) {
     var hint = document.getElementById('request_custom_fields_41617844725147_hint');
     if (hint) hint.style.setProperty('display','none','important');
@@ -195,12 +190,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Only runs if the anonymous email field exists (i.e., user not signed in)
   var wrap  = document.querySelector('.form-field.request_anonymous_requester_email');
   var input = document.getElementById('request_anonymous_requester_email');
   if (!wrap || !input) return;
 
-  // If a hint doesn't exist yet, create one
   var existingHint = wrap.querySelector('#request_anonymous_requester_email_hint');
   if (!existingHint) {
     var hint = document.createElement('p');
@@ -209,7 +202,6 @@ document.addEventListener('DOMContentLoaded', function () {
     wrap.appendChild(hint);
   }
 
-  // Ensure the input points to the hint for accessibility
   var describedby = (input.getAttribute('aria-describedby') || '').trim();
   if (!/\brequest_anonymous_requester_email_hint\b/.test(describedby)) {
     input.setAttribute(
@@ -225,7 +217,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const hint = document.getElementById('request_custom_fields_41617844725147_hint');
   if (!box || !hint) return;
 
-  // Make the hint act like the visible label
   hint.setAttribute('tabindex', '0');
   hint.style.cursor = 'pointer';
 
@@ -235,7 +226,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
   });
 
-  // Improve ARIA association
   box.setAttribute('aria-labelledby', hint.id);
 });
 </script>

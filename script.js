@@ -81,38 +81,34 @@ function getCookie(cname) {
   }
   return "";
 }
-function dontShowPopupAgain(element){
-  var checked=$(element).prop("checked")
-  setCookie("hidepopup", 1, 365)
+function dontShowPopupAgain(){
+  setCookie("hidepopup", 1, 365);
 }
 
 
 $(document).ready(function () {
 
-  // Show div html based on role
-if (HelpCenter.user.role=="anonymous"){
- $("div.anonymous").show();
-}
+  if (HelpCenter.user.role=="anonymous"){
+    $("div.anonymous").show();
+  }
 
-if (HelpCenter.user.role=="end_user"){
- $("div.end_user").show();
-}
+  if (HelpCenter.user.role=="end_user"){
+    $("div.end_user").show();
+  }
 
-if (HelpCenter.user.role=="agent"){
- $("div.agent").show();
-}
+  if (HelpCenter.user.role=="agent"){
+    $("div.agent").show();
+  }
 
-if (HelpCenter.user.role=="manager"){
- $("div.manager").show();
-}
-  
-  // social share popups
+  if (HelpCenter.user.role=="manager"){
+    $("div.manager").show();
+  }
+
   $(".share a").click(function (e) {
     e.preventDefault();
     window.open(this.href, "", "height = 500, width = 500");
   });
 
-  // show form controls when the textarea receives focus or backbutton is used and value exists
   var $commentContainerTextarea = $(".comment-container textarea"),
     $commentContainerFormControls = $(".comment-form-controls, .comment-ccs");
 
@@ -124,7 +120,6 @@ if (HelpCenter.user.role=="manager"){
     $commentContainerFormControls.show();
   }
 
-  // Expand Request comment form when Add to conversation is clicked
   var $showRequestCommentContainerTrigger = $(".request-container .comment-container .comment-show-container"),
     $requestCommentFields = $(".request-container .comment-container .comment-fields"),
     $requestCommentSubmit = $(".request-container .comment-container .request-submit-comment");
@@ -136,7 +131,6 @@ if (HelpCenter.user.role=="manager"){
     $commentContainerTextarea.focus();
   });
 
-  // Mark as solved button
   var $requestMarkAsSolvedButton = $(".request-container .mark-as-solved:not([data-disabled])"),
     $requestMarkAsSolvedCheckbox = $(".request-container .comment-container input[type=checkbox]"),
     $requestCommentSubmitButton = $(".request-container .comment-container input[type=submit]");
@@ -147,7 +141,6 @@ if (HelpCenter.user.role=="manager"){
     $(this).attr("data-disabled", true).closest("form").submit();
   });
 
-  // Change Mark as solved text according to whether comment is filled
   var $requestCommentTextarea = $(".request-container .comment-container textarea");
 
   $requestCommentTextarea.on("keyup", function () {
@@ -160,18 +153,15 @@ if (HelpCenter.user.role=="manager"){
     }
   });
 
-  // Disable submit button if textarea is empty
   if ($requestCommentTextarea.val() === "") {
     $requestCommentSubmitButton.prop("disabled", true);
   }
 
-  // Submit requests filter form in the request list page
   $("#request-status-select, #request-organization-select")
     .on("change", function () {
       search();
     });
 
-  // Submit requests filter form in the request list page
   $("#quick-search").on("keypress", function (e) {
     if (e.which === 13) {
       search();
@@ -197,23 +187,18 @@ if (HelpCenter.user.role=="manager"){
     $(".header .icon-menu").hide();
   }
 
-  // Submit organization form in the request page
   $("#request-organization select").on("change", function () {
     this.form.submit();
   });
 
-
-  // Toggles expanded aria to collapsible elements
   $(".collapsible-nav, .collapsible-sidebar").on("click", function (e) {
     e.stopPropagation();
     var isExpanded = this.getAttribute("aria-expanded") === "true";
     this.setAttribute("aria-expanded", !isExpanded);
   });
 
-  // Wrap table in article content in table-responsive class
   $('.article-body').find('table').wrap('<div class="table-responsive"></div>');
 
-  // Function to list categories in all templates
   function getData(count, callback, param) {
     var count = count ? count : 100;
     return $.ajax({
@@ -240,7 +225,6 @@ if (HelpCenter.user.role=="manager"){
     });
   }
 
-  // Append html in DOM
   function domQuery(el) {
 
     var localCachedMenu = localStorage.getItem('navigation-menu'),
@@ -267,15 +251,12 @@ if (HelpCenter.user.role=="manager"){
     });
   }
 
-  // If multibrand search has more than 5 help centers or categories collapse the list
   const multibrandFilterLists = document.querySelectorAll(".multibrand-filter-list");
   Array.prototype.forEach.call(multibrandFilterLists, function(filter) {
     if (filter.children.length > 6) {
-      // Display the show more button
       var trigger = filter.querySelector(".see-all-filters");
       trigger.setAttribute("aria-hidden", false);
 
-      // Add event handler for click
       trigger.addEventListener("click", function(e) {
         e.stopPropagation();
         trigger.parentNode.removeChild(trigger);
@@ -288,7 +269,6 @@ if (HelpCenter.user.role=="manager"){
 
 var $ = jQuery.noConflict();
 
-// Load all necessary objects from Kyle Library
 $(document).ready(function() {
   if (
     _templateName == "categories" ||
@@ -302,18 +282,14 @@ $(document).ready(function() {
 
     $("li.category-" + catID).addClass("active");
   }
-  
+
   if (getCookie("hidepopup")==1){
-    
     $("#bg-modal").hide()
-  }
-  else{
-    $("#bg-modal").show()    
-    
+  } else {
+    $("#bg-modal").show()
   }
 });
- 
-// When the user clicks on <div>, open the popup
+
 function myFunction() {
   var popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
@@ -344,21 +320,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// Prevent the page from loading "slightly scrolled" and stop auto-focus scrolling
 (function () {
-  // Stop the browser from restoring a previous scroll position
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
 
-  // When the page is shown from bfcache, force to top
   window.addEventListener('pageshow', function (e) {
     if (e.persisted) window.scrollTo(0, 0);
   });
 
-  // After DOM is ready: blur any auto-focused fields (e.g., Zendesk search)
   document.addEventListener('DOMContentLoaded', function () {
-    // Common Zendesk search input id is #query; also blur any element with [autofocus]
     var toBlur = [];
     var q = document.getElementById('query');
     if (q) toBlur.push(q);
@@ -366,7 +337,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     toBlur.forEach(function (el) { try { el.blur(); } catch (_) {} });
 
-    // Ensure we start at the very top
     window.scrollTo(0, 0);
   });
 })();
@@ -374,21 +344,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
-  const ACC_OPEN  = '- Click to collapse';
-  const ACC_CLOSE = '- Click to expand';
+  const ACC_OPEN  = '- Click to collapse';
+  const ACC_CLOSE = '- Click to expand';
 
   document.querySelectorAll('.accordion').forEach((acc, i) => {
     const panel = acc.nextElementSibling;
     if (!panel || !panel.classList.contains('panel')) return;
 
-    // ARIA ids
     if (!panel.id) panel.id = `acc-panel-${i}`;
     if (!acc.id) acc.id = `acc-btn-${i}`;
     acc.setAttribute('aria-controls', panel.id);
 
-    // Ensure there is a label element
     let label = acc.querySelector('.accordion-action');
     if (!label) {
       label = document.createElement('span');
@@ -399,12 +366,10 @@ document.addEventListener('DOMContentLoaded', () => {
       p.appendChild(label);
     }
 
-    // Initialize from aria-expanded or class
     const isOpen = acc.classList.contains('active') || acc.getAttribute('aria-expanded') === 'true';
     acc.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     label.textContent = isOpen ? ACC_OPEN : ACC_CLOSE;
 
-    // Toggle on click/keyboard
     const toggle = () => {
       const open = acc.getAttribute('aria-expanded') === 'true';
       acc.setAttribute('aria-expanded', open ? 'false' : 'true');
@@ -418,7 +383,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-
 
 
 
@@ -544,9 +508,7 @@ if (userInfo) {
 
 
 
-// Kill native browser tooltips everywhere (robust)
 (function () {
-  // Remove `title` up the DOM tree (fast path on hover)
   function stripTitleFrom(node) {
     for (var el = node; el && el.nodeType === 1; el = el.parentElement) {
       if (el.hasAttribute('title')) {
@@ -554,22 +516,18 @@ if (userInfo) {
         if (t && !el.hasAttribute('aria-label')) el.setAttribute('aria-label', t);
         el.removeAttribute('title');
       }
-      // Bootstrap-style tooltips sometimes use these:
       if (el.hasAttribute('data-original-title')) el.removeAttribute('data-original-title');
       if (el.getAttribute('data-toggle') === 'tooltip') el.removeAttribute('data-toggle');
     }
   }
 
-  // 1) Intercept hover early (capture phase) and strip immediately
   window.addEventListener('mouseover', function (e) { stripTitleFrom(e.target); }, true);
   window.addEventListener('focus',    function (e) { stripTitleFrom(e.target); }, true);
 
-  // 2) Initial sweep
   (function initialSweep() {
     document.querySelectorAll('[title], [data-original-title], [data-toggle="tooltip"]').forEach(stripTitleFrom);
   })();
 
-  // 3) Watch for DOM changes AND title rewrites by scripts
   var mo = new MutationObserver(function (list) {
     for (var i = 0; i < list.length; i++) {
       var m = list[i];
@@ -596,6 +554,5 @@ if (userInfo) {
     attributeFilter: ['title', 'data-original-title', 'data-toggle']
   });
 })();
-
 
 
