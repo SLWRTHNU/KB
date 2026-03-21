@@ -1,0 +1,305 @@
+<script>
+  var _templateName = "articles";
+</script>
+
+
+
+    <script>
+    //dynamic placeholder in searchbar
+  var gtext = $("span#search_placeholder_text").data('value');
+  $('#query').attr('placeholder', gtext);
+    </script>
+<script language="JavaScript">
+function toggletext(cid)
+{
+if ( document.getElementById(cid).style.display == "none" )
+{
+document.getElementById(cid).style.display = "block";
+}
+else
+{
+document.getElementById(cid).style.display = "none";
+};
+}
+</script>
+
+
+<section class="sub-nav-wrapper">
+  <div class="container">
+    <nav class="sub-nav">
+  {{breadcrumbs}}
+   {{search submit=false instant=true class='search'}}
+      
+</nav>
+
+      <script>
+        var catID = $('.breadcrumbs li:nth-child(2) a')
+          .attr('href').match(/[0-9]+/)[0]
+      </script>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="article-content-area" id="article-content-area">
+    {{#if settings.sidebar_block_visibility}}
+    <section class="sidebar collapsible-sidebar">
+      <h3 class="collapsible-sidebar-title sidenav-title menu-title">
+        {{#is settings.article_menu_title_dc 'NONE'}}{{settings.article_menu_title}}{{else}}{{dc settings.article_menu_title_dc }}{{/is}}
+      </h3>
+      <div class="diziana-category-sidebar-menu"></div>
+    </section>
+    {{/if}}
+
+    <section class=" article-content-block">
+      {{#if settings.show_articles_in_section}}
+        <div class="article-section-sidebar collapsible-sidebar">
+          <section class="article-sidebar">
+
+          </section>
+        </div>
+      {{/if}}
+      <article class="article">
+        <header class="article-header {{#is settings.meta_block_visibility 'hide'}}follow_nowrap{{/is}}">
+          <strong><font size="+3" title="{{article.title}}" class="article-title">
+            {{article.title}} {{#if article.internal}}
+            {{/if}}
+
+          {{#if settings.follow_button_visibility}}
+            {{subscribe}}
+            {{/if}}
+            </font></strong>
+          {{#if settings.meta_block_visibility}}
+          <div class="article-author">
+            <div class="avatar article-avatar">
+              {{#if article.author.agent}}
+              <span class="icon-agent"></span>
+              {{/if}}
+              <img src="{{article.author.avatar_url}}" alt="Avatar" class="user-avatar" />
+            </div>
+            <div class="article-meta">
+              {{#link 'user_profile' id=article.author.id}} {{article.author.name}} {{/link}}
+
+              <ul class="meta-group">
+                {{#is article.created_at article.edited_at}}
+                <li class="meta-data">{{date article.created_at timeago=true}}</li>
+                {{else}}
+                <li class="meta-data">{{date article.edited_at timeago=true}}</li>
+                <li class="meta-data">{{t 'updated'}}</li>
+                {{/is}}
+              </ul>
+            </div>
+          </div>
+          {{/if}}
+        </header>
+
+        <section class="article-info">
+          <div class="article-content {{#is settings.meta_block_visibility 'hide'}}article-content-margin{{/is}}">
+            <div class="article-body">{{article.body}}</div>
+
+            <div class="article-attachments">
+              <ul class="attachments">
+                {{#each attachments}}
+                <li class="attachment-item">
+                  <a href="{{url}}" target="_blank" title="{{name}}">{{name}}</a>
+                  <div class="attachment-meta meta-group">
+                    <span class="attachment-meta-item meta-data">{{size}}</span>
+                    <a href="{{url}}" target="_blank" class="attachment-meta-item meta-data" title="{{t 'download'}}">{{t 'download'}}</a>
+                  </div>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+  <footer>
+          <div class="article-footer">
+            {{#if settings.article_share_block_visibility }}
+            <div class="article-share">{{share}}</div>
+            {{/if}}
+        
+
+		{{#if settings.comment_block_visibility}} {{#if comments}}
+            <a href="#article-comments" class="article-comment-count" title="{{article.comment_count}}">
+              <span class="icon-comments"></span>
+              {{article.comment_count}}
+            </a>
+            {{/if}} {{/if}}
+          </div>
+    {{#with article}}
+    
+      <div class="article-votes">
+        <span class="article-votes-question">Did you find this article helpful?</span>
+       <div class="article-votes-controls" role='radiogroup'>
+         <p style="display:inline-block" onclick="toggletext('mytext2')">{{vote 'up' selected_class='article-voted' role='radio' class='button article-vote article-vote-up'}} 
+<p style="display:inline-block" onclick="toggletext('mytext')">{{vote 'down' class='button article-vote article-vote-down' selected_class='article-voted' role='button'}}</p>
+         </div> 
+            .<div class="up-vote-feedback" id="mytext2" style="display: none;">
+ 
+</div>
+      </div> 
+            <div class="down-vote-feedback" id="mytext" style="display: none;">
+              <script src="https://app-widgets.jotform.io/scripts/getUrlReferrer.js"></script>
+<script src="https://cdn02.jotfor.ms/static/prototype.forms.js?v=3.3.55804" type="text/javascript"></script>
+<script src="https://cdn03.jotfor.ms/static/jotform.forms.js?v=3.3.55804" type="text/javascript"></script>
+<script src="https://cdn01.jotfor.ms/s/umd/cd0deefce7d/for-widgets-server.js?v=3.3.55804" type="text/javascript"></script>
+<script src="https://cdn01.jotfor.ms/s/umd/cd0deefce7d/for-form-branding-footer.js?v=3.3.55804" type="text/javascript" defer></script>
+<script src="https://cdn01.jotfor.ms/js/vendor/smoothscroll.min.js?v=3.3.55804" type="text/javascript"></script>
+<script src="https://cdn02.jotfor.ms/js/errorNavigation.js?v=3.3.55804" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/stylebuilder/static/form-common.css?v=80facca
+"/>
+
+<link type="text/css" rel="stylesheet" href="https://cdn03.jotfor.ms/css/styles/payment/payment_styles.css?3.3.55804" />
+<link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/css/styles/payment/payment_feature.css?3.3.55804" />
+
+<form class="jotform-form" onsubmit="return typeof testSubmitFunction !== 'undefined' && testSubmitFunction();" action="https://submit.jotform.com/submit/240934239029256" method="post" name="form_240934239029256" id="240934239029256" accept-charset="utf-8" autocomplete="on"><input type="hidden" name="formID" value="240934239029256" /><input type="hidden" id="JWTContainer" value="" /><input type="hidden" id="cardinalOrderNumber" value="" /><input type="hidden" id="jsExecutionTracker" name="jsExecutionTracker" value="build-date-1722870053276" /><input type="hidden" id="submitSource" name="submitSource" value="unknown" /><input type="hidden" id="buildDate" name="buildDate" value="1722870053276" />
+
+      <div class="form-line" data-type="control_textarea" id="id_14"><label class="form-label form-label-top form-label-auto" id="label_14" for="input_14" aria-hidden="false"> We're sorry to hear that this article wasn't helpful! Please help us improve by sharing more about your experience. In as much or as little detail as you prefer, tell us why. Your feedback is anonymous and will help us enhance our knowledge base articles. <hr style="height:1px;visibility:hidden"></label>
+        <div id="cid_14" class="form-input-wide" data-layout="full"> <textarea id="input_14" class="form-textarea" name="q14_whatWas" style="width:648px;height:163px" data-component="textarea" aria-labelledby="label_14"></textarea> </div>
+      </div>
+      <div class="form-line" data-type="control_widget" id="id_20">
+        <div id="cid_20" class="form-input" data-layout="full">
+          <div style="width:100%;text-align:Left" data-component="widget-directEmbed">
+            <div class="direct-embed-widgets get-form-page-url-widget " data-type="direct-embed" style="width:1px;min-height:50px"><input type='hidden' id='input_20' name='q20_typeA' class='form-hidden getParentURL'>
+              <script type='text/javascript' src='//widgets.jotform.io/getParentUrl/min/scripts.min.js'></script>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-line" data-type="control_button" id="id_9">
+        <div id="cid_9" class="form-input-wide" data-layout="full">
+          <div data-align="auto" class="form-buttons-wrapper form-buttons-auto   jsTest-button-wrapperField"><hr style="height:1px;visibility:hidden"><button id="input_9" type="submit" class="form-submit-button submit-button jf-form-buttons jsTest-submitField" data-component="button" data-content="">Submit Feedback</button><hr style="height:1px;visibility:hidden"></div>
+        </div>
+      </div>
+      <div style="display:none">Should be Empty: <input type="text" name="website" value="" type="hidden" /></li>
+  
+  </div>
+  <script>
+    JotForm.showJotFormPowered = "new_footer";
+  </script>
+  <script>
+    JotForm.poweredByText = "Powered by Jotform";
+  </script><input type="hidden" class="simple_spc" id="simple_spc" name="simple_spc" value="240934239029256" />
+  <script type="text/javascript">
+    var all_spc = document.querySelectorAll("form[id='240934239029256'] .si" + "mple" + "_spc");
+    for (var i = 0; i < all_spc.length; i++)
+    {
+      all_spc[i].value = "240934239029256-240934239029256";
+    }
+  </script>
+</form><script type="text/javascript">JotForm.ownerView=true;</script><script type="text/javascript">JotForm.isNewSACL=true;</script>
+    
+    {{/with}}
+</div>
+
+       {{#with article}}
+   
+
+         
+ {{/with}}
+        
+
+        </footer>
+
+        <section class="article-relatives">
+          {{#if settings.recent_activity_visibility}}
+          {{recent_articles}}
+          {{/if}}
+          {{#if settings.related_article_visibility}}
+          {{related_articles}}
+          {{/if}}
+        </section>
+        {{#if settings.comment_block_visibility}}
+        <div class="article-comments" id="article-comments">
+          <section class="comments">
+            <header class="comment-overview">
+              <h3 class="comment-heading">
+                {{t 'comments'}}
+              </h3>
+              <p class="comment-callout">{{t 'comments_count' count=article.comment_count}}</p>
+              {{#if comments}}
+              <div class="dropdown comment-sorter">
+                <a class="dropdown-toggle">{{t 'sort_by'}}</a>
+                <span class="dropdown-menu" role="menu">
+                  {{#each comment_sorters}}
+                  <a aria-selected="{{selected}}" href="{{url}}" role="menuitem" title="{{name}}">{{name}}</a>
+                  {{/each}}
+                </span>
+              </div>
+              {{/if}}
+            </header>
+
+            <ul id="comments" class="comment-list">
+              {{#each comments}}
+              <li id="{{anchor}}" class="comment">
+                <div class="comment-wrapper">
+                  <div class="comment-info">
+                    <div class="comment-author">
+                      <div class="avatar comment-avatar">
+                        {{#if author.agent}}
+                        <span class="icon-agent"></span>
+                        {{/if}}
+                        <img src="{{author.avatar_url}}" alt="Avatar" class="user-avatar" />
+                      </div>
+                      <div class="comment-meta">
+                        <span title="{{author.name}}">
+                          {{#link 'user_profile' id=author.id}} {{author.name}} {{/link}}
+                        </span>
+
+                        <ul class="meta-group">
+                          {{#if editor}}
+                          <li class="meta-data">{{date edited_at timeago=true}}</li>
+                          <li class="meta-data">{{t 'edited'}}</li>
+                          {{else}}
+                          <li class="meta-data">{{date created_at timeago=true}}</li>
+                          {{/if}}
+                        </ul>
+                      </div>
+                      <div class="comment-labels">
+                        {{#with ticket}}
+                        <a href="{{url}}" target="_zendesk_lotus" class="status-label escalation-badge">
+                          {{t 'request'}}{{id}}
+                        </a>
+                        {{/with}} {{#if pending}}
+                        <span class="comment-pending status-label status-label-pending" >{{t 'pending_approval'}}</span>
+                        {{/if}}
+                      </div>
+                    </div>
+
+                    <section class="comment-body">{{body}}</section>
+                  </div>
+
+                  <div class="comment-actions-container">
+                    <div class="comment-vote vote" role='radiogroup'>
+                      {{vote 'up' role='radio' class='vote-up' selected_class='vote-voted'}} {{vote 'sum' class='vote-sum'}} {{vote 'down' role='radio' class='vote-down' selected_class='vote-voted'}}
+                    </div>
+                    <div class="comment-actions actions">
+                      {{actions}}
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {{/each}}
+            </ul>
+
+            {{pagination}} {{#form 'comment' class='comment-form'}}
+            <div class="avatar comment-avatar">
+              {{user_avatar class='user-avatar'}}
+            </div>
+            <div class="comment-container">
+              {{wysiwyg 'body'}}
+              <div class="comment-form-controls">
+                {{input type='submit'}}
+              </div>
+            </div>
+            {{/form}}
+
+            <p class="comment-callout">{{comment_callout}}</p>
+          </section>
+        </div>
+        {{/if}}
+      </article>
+    </section>
+  </div>
+</div>
