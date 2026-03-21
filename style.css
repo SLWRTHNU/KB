@@ -9561,3 +9561,40 @@ form.request-form .form-field.request_custom_fields_41617915210011.is-shown {
 }
 
 
+/* Article feedback (vote + JotForm panels) */
+
+.vs-article-feedback {
+  margin-top: 8px;
+}
+
+#up-vote-panel {
+  margin-top: 16px;
+}
+
+.vs-feedback-thanks {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1E5598;
+  margin: 0;
+}
+
+#down-vote-panel {
+  margin-top: 16px;
+}
+
+.vs-feedback-followup {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  color: #414042;
+  margin: 0 0 16px;
+}
+
+#down-vote-panel iframe {
+  display: block;
+  width: 100%;
+  min-height: 480px;
+  border: none;
+}
+
+

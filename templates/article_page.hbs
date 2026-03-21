@@ -10,7 +10,6 @@
 
 
 
-    // Toggle classes when hovering the search input only (avoid cross-animating the shell)
     document.querySelectorAll('.vs-omnisearch-shell-article').forEach(shell => {
       const input = shell.querySelector('input[type="search"]');
       if (!input) return;
@@ -98,6 +97,27 @@
 
        
       </footer>
+
+      <section class="vs-article-feedback">
+        {{vote}}
+        <div id="up-vote-panel" hidden>
+          <p class="vs-feedback-thanks">Thanks for the feedback — glad we could help!</p>
+        </div>
+        <div id="down-vote-panel" hidden>
+          <p class="vs-feedback-followup">Sorry to hear that. Please share what we can improve below.</p>
+        </div>
+        <template id="jotform-template">
+          <iframe
+            src="https://form.jotform.com/FORM_ID_HERE"
+            title="Article feedback"
+            width="100%"
+            height="540"
+            frameborder="0"
+            scrolling="yes"
+            allow="payment"
+          ></iframe>
+        </template>
+      </section>
 
       <section class="article-relatives">
         {{#if settings.recent_activity_visibility}}{{recent_articles}}{{/if}}
