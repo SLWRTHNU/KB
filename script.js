@@ -434,6 +434,18 @@ document.addEventListener('DOMContentLoaded', () => {
   mo.observe(upBtn, { attributes: true, attributeFilter: ['aria-selected', 'class'] });
   mo.observe(downBtn, { attributes: true, attributeFilter: ['aria-selected', 'class'] });
 
+  upBtn.addEventListener('click', () => {
+    if (upBtn.getAttribute('aria-disabled') === 'true') return;
+    upBtn.setAttribute('aria-selected', 'true');
+    downBtn.setAttribute('aria-selected', 'false');
+  });
+
+  downBtn.addEventListener('click', () => {
+    if (downBtn.getAttribute('aria-disabled') === 'true') return;
+    downBtn.setAttribute('aria-selected', 'true');
+    upBtn.setAttribute('aria-selected', 'false');
+  });
+
   document.addEventListener('click', (e) => {
     const disabledTarget = e.target.closest('.article-vote[aria-disabled="true"]');
     if (disabledTarget) e.preventDefault();
