@@ -169,6 +169,23 @@
           </form>
           <script type="text/javascript">JotForm.ownerView=true;</script>
           <script type="text/javascript">JotForm.isNewSACL=true;</script>
+          <iframe name="jotform-submit-frame" id="jotform-submit-frame" style="display:none" aria-hidden="true"></iframe>
+          <script>
+            (function() {
+              var form = document.getElementById('240934239029256');
+              var frame = document.getElementById('jotform-submit-frame');
+              var panel = document.getElementById('down-vote-panel');
+              if (!form || !frame || !panel) return;
+              form.setAttribute('target', 'jotform-submit-frame');
+              var submitted = false;
+              form.addEventListener('submit', function() { submitted = true; });
+              frame.addEventListener('load', function() {
+                if (!submitted) return;
+                submitted = false;
+                panel.innerHTML = '<p class="vs-feedback-submitted">Thank you so much for taking the time to share your thoughts with us. Your feedback goes a long way in helping us improve, and we truly appreciate it.</p>';
+              });
+            })();
+          </script>
         </div>
       </section>
 

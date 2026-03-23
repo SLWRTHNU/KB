@@ -8883,6 +8883,8 @@ transform: scale(1.05);
 
 .vs-article-vote__panel-body .form-buttons-wrapper,
 #down-vote-panel .form-buttons-wrapper {
+  display: flex;
+  justify-content: center;
   gap: 12px;
 }
 
@@ -9576,6 +9578,7 @@ form.request-form .form-field.request_custom_fields_41617915210011.is-shown {
   font-size: 15px;
   font-weight: 600;
   color: #1E5598;
+  text-align: center;
   margin: 0;
 }
 
@@ -9587,7 +9590,17 @@ form.request-form .form-field.request_custom_fields_41617915210011.is-shown {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 15px;
   color: #414042;
+  text-align: center;
   margin: 0 0 16px;
+}
+
+.vs-feedback-submitted {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1E5598;
+  text-align: center;
+  margin: 0;
 }
 
 #down-vote-panel #id_20 {
