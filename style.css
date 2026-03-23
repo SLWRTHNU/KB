@@ -9590,11 +9590,13 @@ form.request-form .form-field.request_custom_fields_41617915210011.is-shown {
   margin: 0 0 16px;
 }
 
-#down-vote-panel iframe {
-  display: block;
-  width: 100%;
-  min-height: 480px;
-  border: none;
+#down-vote-panel #id_20 {
+  display: none;
+}
+
+#down-vote-panel .form-textarea {
+  width: 100% !important;
+  box-sizing: border-box;
 }
 
 
